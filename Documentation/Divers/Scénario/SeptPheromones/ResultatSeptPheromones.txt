@@ -1,0 +1,61 @@
+Fourmi dit : Variable nbavancer = 1
+
+Fourmi dit : Variable nbavancer = 2
+
+Fourmi dit : Variable nbavancer = 3
+
+Fourmi dit : Variable nbpheromone = 1
+
+Fourmi dit : Variable nbavancer = 4
+
+Fourmi dit : Variable nbavancer = 5
+
+Fourmi dit : Variable nbavancer = 6
+
+Fourmi dit : Variable nbpheromone = 2
+
+Fourmi dit : Variable nbavancer = 7
+
+Fourmi dit : Variable nbavancer = 8
+
+Fourmi dit : Variable nbavancer = 9
+
+Fourmi dit : Variable nbpheromone = 3
+
+Fourmi dit : Variable nbavancer = 10
+
+Fourmi dit : Variable nbavancer = 11
+
+Fourmi dit : Variable nbavancer = 12
+
+Fourmi dit : Variable nbpheromone = 4
+
+Fourmi dit : Variable nbavancer = 13
+
+Fourmi dit : Variable nbavancer = 14
+
+Fourmi dit : Variable nbavancer = 15
+
+Fourmi dit : Variable nbpheromone = 5
+
+Fourmi dit : Variable nbavancer = 16
+
+Fourmi dit : Variable nbavancer = 17
+
+Fourmi dit : Variable nbavancer = 18
+
+Fourmi dit : Variable nbpheromone = 6
+
+Fourmi dit : Variable nbavancer = 19
+
+Fourmi dit : Variable nbavancer = 20
+
+Fourmi dit : Variable nbavancer = 21
+
+Fourmi dit : Variable nbpheromone = 7
+
+Fourmi dit : fin du programme
+
+Fourmi dit : Variable nbavancer = 0
+
+Fourmi dit : Variable nbpheromone = 7

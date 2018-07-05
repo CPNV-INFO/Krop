@@ -1,0 +1,122 @@
+%header%
+
+GRAMMARTYPE = "LL"
+
+CASESENSITIVE = "false"
+
+DESCRIPTION = "Une grammaire pour Krop"
+
+AUTHOR      = "Stuart Gueissaz"
+VERSION     = "1.0"
+DATE        = "18 Mai 2018"
+
+LICENSE     = "This program is free software: you can redistribute it and/or
+               modify it under the terms of the BSD license.
+
+               This program is distributed in the hope that it will be useful,
+               but WITHOUT ANY WARRANTY; without even the implied warranty of
+               MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+               LICENSE.txt file for more details."
+
+COPYRIGHT   = "Copyright (c) 2018 Stuart Gueissaz. All rights reserved."
+
+
+%tokens%
+
+IF							 = "IF"
+ELSE						 = "ELSE"
+WHILE						 = "WHILE"
+DIRE						 = "DIRE"
+NOT							 = "NOT"
+TRUE						 = "TRUE"
+FALSE						 = "FALSE"
+INT							 = "INT"
+STRING						 = "STRING"
+CONDITION					 = <<SurUnePheromone|ObstacleEnFace|ObstacleADroite|ObstacleAGauche>>
+INSTRUCTION					 = <<PoserPheromone|PrendrePheromone|Avancer|TournerADroite|TournerAGauche>>
+EGAL 						 = "="
+BIGGER						 = ">"
+SMALLER						 = "<"
+ADD                          = "+"
+SUB                          = "-"
+MUL                          = "*"
+DIV                          = "/"
+LEFT_PAREN                   = "("
+RIGHT_PAREN                  = ")"
+LEFT_BRACE                   = "{"
+RIGHT_BRACE                  = "}"
+SEMICOLON					 = ";"
+APOSTROPHE					 = "'"
+SPACE 						 = " "
+NUMBER                       = <<[0-9]+>>
+WORD 						 = <<[a-y]+>>
+WHITESPACE    				 = <<[\t\n\r]+>> %ignore%
+
+%productions%
+
+program = {SPACE} {declarationStatement}  statement+ ;
+
+declarationStatement = stringStatement {SPACE} 
+					| intStatement {SPACE} ;
+
+statement = 	instructionStatement {SPACE} 
+			| 	ifElseStatement {SPACE} 
+			| 	whileStatement {SPACE}
+			|	direStatement {SPACE}
+			| 	setVarStatement {SPACE};
+			
+instructionStatement = INSTRUCTION {SPACE} SEMICOLON ;
+			
+ifElseStatement = 	ifStatement {SPACE} [elseStatement] ;
+ifStatement = 	IF {SPACE} conditonStatement {SPACE} LEFT_BRACE program RIGHT_BRACE {SPACE} ;			
+elseStatement = 	ELSE {SPACE} LEFT_BRACE program RIGHT_BRACE {SPACE} ;
+
+whileStatement = WHILE {SPACE} conditonStatement {SPACE} LEFT_BRACE program RIGHT_BRACE ;
+
+direStatement = DIRE {SPACE} direValue SEMICOLON {SPACE};
+
+intStatement = INT SPACE+ WORD {SPACE} EGAL {SPACE} expression {SPACE} SEMICOLON {SPACE};
+
+stringStatement = STRING SPACE+ WORD {SPACE} EGAL {SPACE} stringValue SEMICOLON {SPACE};
+
+setVarStatement = WORD  {SPACE} EGAL {SPACE} setVarValue SEMICOLON {SPACE};
+
+conditonStatement = LEFT_PAREN {SPACE} conditionExpr RIGHT_PAREN ;
+conditionExpr = [NOT {SPACE}]  conditionParameter;
+conditionParameter =  CONDITION {SPACE} 
+					| TRUE {SPACE} 
+					| FALSE {SPACE}
+					| booleanExpression {SPACE};
+
+booleanExpression = expression {SPACE} booleanExpressionRest;
+					
+booleanExpressionRest = EGAL {SPACE} expression
+					| BIGGER {SPACE} expression
+					| SMALLER {SPACE}expression;
+					
+setVarValue = 	expression {SPACE}
+				|	stringValue {SPACE} ;
+					
+direValue = stringValue {SPACE}
+			| atom {SPACE};
+					
+stringValue = APOSTROPHE {SPACE} sentence APOSTROPHE {SPACE} ;
+					
+sentence = (atom {SPACE})+;				
+					
+expression = term {SPACE} [expressionRest];
+
+expressionRest = "+" {SPACE} expression
+               | "-" {SPACE} expression ;
+
+term = factor {SPACE} [termRest] ;
+
+termRest = "*" {SPACE} term
+         | "/" {SPACE} term ;
+
+factor = atom
+       | "(" {SPACE} expression {SPACE} ")" ;
+	 
+atom = [SUB] NUMBER
+     | WORD ;
+

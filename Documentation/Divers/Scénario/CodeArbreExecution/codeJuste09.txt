@@ -1,0 +1,8 @@
+if(true){
+	if(true){
+		avancer;
+	}
+}
+else{
+	tourneradroite;
+}

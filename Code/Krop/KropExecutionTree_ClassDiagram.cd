@@ -1,0 +1,117 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Krop.KropExecutionTree.AbstractClass.Variable&lt;T&gt;">
+    <Position X="2.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAIAAAAgAEAAAAAAAAAAAAAAAAAAAAAAAABAA=</HashCode>
+      <FileName>KropExecutionTree\AbstractClass\Variable.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Krop.KropExecutionTree.Variable.IntVar">
+    <Position X="4.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAIAAAAgAEAAAAAAQAAAAAAAAAAAAgAAAABAA=</HashCode>
+      <FileName>KropExecutionTree\Variable\IntVar.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Krop.KropExecutionTree.AbstractClass.Measurable&lt;T&gt;">
+    <Position X="0.5" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAIAAAAAAAAAA=</HashCode>
+      <FileName>KropExecutionTree\AbstractClass\Measurable.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Krop.KropExecutionTree.Condition.BooleanExpression">
+    <Position X="0.5" Y="4" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAQAAAAAAAAgAAAQoEAAAAAAAAAAIAIAAAAAAA=</HashCode>
+      <FileName>KropExecutionTree\Condition\BooleanExpression.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Krop.KropExecutionTree.Condition.BooleanFunction">
+    <Position X="2.5" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAIAAAAAgA=</HashCode>
+      <FileName>KropExecutionTree\Condition\BooleanFunction.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Krop.KropExecutionTree.Condition.BooleanVar">
+    <Position X="4.25" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAoAAAAAAA=</HashCode>
+      <FileName>KropExecutionTree\Condition\BooleanVar.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Krop.KropExecutionTree.AbstractClass.Executable">
+    <Position X="9.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAQAAEAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>KropExecutionTree\AbstractClass\Executable.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Krop.KropExecutionTree.Subprogram">
+    <Position X="12" Y="0.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>gAAAAAIRAAAACAQAAAAAAAAgAAAAIAIAAAEAAAAAABA=</HashCode>
+      <FileName>KropExecutionTree\Subprogram.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Krop.KropExecutionTree.Instruction.InstructionIf">
+    <Position X="8.75" Y="4.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAQAAAAAAQAAAAQCAAAAAAAAAAAAAAAAAAAAgA=</HashCode>
+      <FileName>KropExecutionTree\Instruction\InstructionIf.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Krop.KropExecutionTree.Instruction.InstructionWhile">
+    <Position X="11" Y="4.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAQAAAAABQAAAAQAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>KropExecutionTree\Instruction\InstructionWhile.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Krop.KropExecutionTree.Instruction.Command">
+    <Position X="13.25" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAQAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>KropExecutionTree\Instruction\Command.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Krop.KropExecutionTree.Instruction.InstructionDire">
+    <Position X="8.75" Y="7.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAQAAAAAAQAAAACAAAAAAAAAAAACAAgAEIAAAA=</HashCode>
+      <FileName>KropExecutionTree\Instruction\InstructionDire.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Krop.KropExecutionTree.Instruction.InstructionInt">
+    <Position X="13.25" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAAAAAAAQQAAAACAAAAAAAAAAAAAAAAAEAAAAA=</HashCode>
+      <FileName>KropExecutionTree\Instruction\InstructionInt.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Krop.KropExecutionTree.Instruction.InstructionSetVar">
+    <Position X="11" Y="7.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAQAACQAQQAAAAAAAAAAAAAAAAAAAAAAEAAAAA=</HashCode>
+      <FileName>KropExecutionTree\Instruction\InstructionSetVar.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Krop.KropExecutionTree.AlgorithmicExpression">
+    <Position X="2" Y="7.25" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAIAAAAAAAABAAAAAgCAAAQAAAQAAAAA=</HashCode>
+      <FileName>KropExecutionTree\AlgorithmicExpression.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="Krop.KropExecutionTree.Interface.IVariable">
+    <Position X="0.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAABAA=</HashCode>
+      <FileName>KropExecutionTree\Interface\IVariable.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

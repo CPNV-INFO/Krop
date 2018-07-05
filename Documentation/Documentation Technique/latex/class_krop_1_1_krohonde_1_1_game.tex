@@ -1,0 +1,345 @@
+\hypertarget{class_krop_1_1_krohonde_1_1_game}{}\section{Krop.\+Krohonde.\+Game Class Reference}
+\label{class_krop_1_1_krohonde_1_1_game}\index{Krop.\+Krohonde.\+Game@{Krop.\+Krohonde.\+Game}}
+
+
+Primary class of the project  
+
+
+Inheritance diagram for Krop.\+Krohonde.\+Game\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_krop_1_1_krohonde_1_1_game}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_krop_1_1_krohonde_1_1_game_a99b4f31e791c00af369068b6a17482de}{Game}} (int width, int height)
+\begin{DoxyCompactList}\small\item\em Create the game window \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static bool \mbox{\hyperlink{class_krop_1_1_krohonde_1_1_game_a1478a79991c3ede806daa5a2e6bb1f69}{Place\+Is\+Free}} (int \+\_\+posX, int \+\_\+posY)
+\begin{DoxyCompactList}\small\item\em Check if the grid square is of type grass \end{DoxyCompactList}\item 
+static bool \mbox{\hyperlink{class_krop_1_1_krohonde_1_1_game_a4cc704bda7106616a4d467743bf703d6}{On\+Pheromone}} ()
+\begin{DoxyCompactList}\small\item\em Check if the ant is on a pheromone \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{class_krop_1_1_krohonde_1_1_game_a4d1fe0a45ef3e7ef8600a3ccef1289b0}{Drop\+Pheromone}} ()
+\begin{DoxyCompactList}\small\item\em Drop a pheromone below the ant \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{class_krop_1_1_krohonde_1_1_game_a17afa697841f604772d61aaf2b8719f8}{Take\+Pheromone}} ()
+\begin{DoxyCompactList}\small\item\em Take a pheromone below the ant \end{DoxyCompactList}\item 
+static bool \mbox{\hyperlink{class_krop_1_1_krohonde_1_1_game_a4eef675c83400a1028687124abc72406}{Obstacle\+In\+Front}} ()
+\begin{DoxyCompactList}\small\item\em Check if there is an obstacle in front of the ant \end{DoxyCompactList}\item 
+static bool \mbox{\hyperlink{class_krop_1_1_krohonde_1_1_game_a7a4f81955b1da1871586ee8f311cc20e}{Obstacle\+On\+Right}} ()
+\begin{DoxyCompactList}\small\item\em Check if there is an obstacle on the right of the ant \end{DoxyCompactList}\item 
+static bool \mbox{\hyperlink{class_krop_1_1_krohonde_1_1_game_a6bca313b39a9effdc456b6a31f5af50f}{Obstacle\+On\+Left}} ()
+\begin{DoxyCompactList}\small\item\em Check if there is an obstacle on the left of the ant \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{class_krop_1_1_krohonde_1_1_game_ac51d3346621871ac6d5d7faff715a067}{Change\+Garden}} (string \+\_\+path)
+\begin{DoxyCompactList}\small\item\em Load a garden \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{class_krop_1_1_krohonde_1_1_game_ad89cd94c1649b695992d56fc9da54f35}{Change\+Garden}} (int \+\_\+x, int \+\_\+y)
+\begin{DoxyCompactList}\small\item\em Load default garden \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+static bool \mbox{\hyperlink{class_krop_1_1_krohonde_1_1_game_a6a3e7db26ac0b9f80507bf6ea36d4fd2}{E\+X\+I\+T\+\_\+\+K\+R\+O\+H\+O\+N\+DE}} = false
+\item 
+static int \mbox{\hyperlink{class_krop_1_1_krohonde_1_1_game_a3cff1b81bcc3759e697aa76cee2d758e}{W\+I\+D\+T\+H\+W\+I\+N\+D\+OW}} = 960
+\item 
+static int \mbox{\hyperlink{class_krop_1_1_krohonde_1_1_game_ad75f5df73247858cd812bdeebb40d39e}{H\+E\+I\+G\+H\+T\+W\+I\+N\+D\+OW}} = 720
+\item 
+static int \mbox{\hyperlink{class_krop_1_1_krohonde_1_1_game_ae73d97c0f81728f4ff142d36ab9dde4d}{G\+R\+I\+D\+S\+I\+ZE}} = 24
+\item 
+static int \mbox{\hyperlink{class_krop_1_1_krohonde_1_1_game_a248438b8c8aa03b448ccf9203b0754e7}{H\+E\+I\+G\+H\+T\+G\+A\+R\+D\+EN}} = 30
+\item 
+static int \mbox{\hyperlink{class_krop_1_1_krohonde_1_1_game_a2e5966eba694146acb742074bd5d9ae3}{W\+I\+D\+T\+H\+G\+A\+R\+D\+EN}} = 40
+\item 
+static int \mbox{\hyperlink{class_krop_1_1_krohonde_1_1_game_a1351c196ec69b91703900e09a713f49a}{T\+I\+L\+E\+S\+I\+ZE}} = 32
+\item 
+static \mbox{\hyperlink{class_krop_1_1_krohonde_1_1_texture2_d}{Texture2D}} \mbox{\hyperlink{class_krop_1_1_krohonde_1_1_game_a58093d75ef6e73acbff1eb82c77cd9b9}{T\+I\+L\+E\+S\+ET}}
+\item 
+static \mbox{\hyperlink{class_krop_1_1_krohonde_1_1_ant}{Ant}} \mbox{\hyperlink{class_krop_1_1_krohonde_1_1_game_a985a69e1fe6b1e94b969ed3cffcc0ca4}{A\+NT}} = new \mbox{\hyperlink{class_krop_1_1_krohonde_1_1_ant}{Ant}}()
+\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+override void \mbox{\hyperlink{class_krop_1_1_krohonde_1_1_game_a1d0295e8614a48b8a81552b209c5ed4a}{On\+Load}} (Event\+Args e)
+\begin{DoxyCompactList}\small\item\em Start when the program loads \end{DoxyCompactList}\item 
+override void \mbox{\hyperlink{class_krop_1_1_krohonde_1_1_game_ae417ed79f31ff0280ca92ec3202990e3}{On\+Closing}} (Cancel\+Event\+Args e)
+\begin{DoxyCompactList}\small\item\em Close \mbox{\hyperlink{namespace_krop}{Krop}} \end{DoxyCompactList}\item 
+override void \mbox{\hyperlink{class_krop_1_1_krohonde_1_1_game_ad88326ce1906f9e45caa3005781a70a2}{On\+Update\+Frame}} (Frame\+Event\+Args e)
+\begin{DoxyCompactList}\small\item\em Start on each update frame This function starts all the calculation functions of the differents garden elements like the new position, the sprite \end{DoxyCompactList}\item 
+override void \mbox{\hyperlink{class_krop_1_1_krohonde_1_1_game_ab12bfce981cec214fe7f8e35abd342eb}{On\+Render\+Frame}} (Frame\+Event\+Args e)
+\begin{DoxyCompactList}\small\item\em Manage the elements display on the window \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Primary class of the project 
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_krop_1_1_krohonde_1_1_game_a99b4f31e791c00af369068b6a17482de}\label{class_krop_1_1_krohonde_1_1_game_a99b4f31e791c00af369068b6a17482de}} 
+\index{Krop\+::\+Krohonde\+::\+Game@{Krop\+::\+Krohonde\+::\+Game}!Game@{Game}}
+\index{Game@{Game}!Krop\+::\+Krohonde\+::\+Game@{Krop\+::\+Krohonde\+::\+Game}}
+\subsubsection{\texorpdfstring{Game()}{Game()}}
+{\footnotesize\ttfamily Krop.\+Krohonde.\+Game.\+Game (\begin{DoxyParamCaption}\item[{int}]{width,  }\item[{int}]{height }\end{DoxyParamCaption})}
+
+
+
+Create the game window 
+
+
+\begin{DoxyParams}{Parameters}
+{\em width} & Number of grid columns\\
+\hline
+{\em height} & Number of grid rows\\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_krop_1_1_krohonde_1_1_game_ac51d3346621871ac6d5d7faff715a067}\label{class_krop_1_1_krohonde_1_1_game_ac51d3346621871ac6d5d7faff715a067}} 
+\index{Krop\+::\+Krohonde\+::\+Game@{Krop\+::\+Krohonde\+::\+Game}!Change\+Garden@{Change\+Garden}}
+\index{Change\+Garden@{Change\+Garden}!Krop\+::\+Krohonde\+::\+Game@{Krop\+::\+Krohonde\+::\+Game}}
+\subsubsection{\texorpdfstring{Change\+Garden()}{ChangeGarden()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily static void Krop.\+Krohonde.\+Game.\+Change\+Garden (\begin{DoxyParamCaption}\item[{string}]{\+\_\+path }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Load a garden 
+
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+path} & Name of the file containing garden \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_krop_1_1_krohonde_1_1_game_ad89cd94c1649b695992d56fc9da54f35}\label{class_krop_1_1_krohonde_1_1_game_ad89cd94c1649b695992d56fc9da54f35}} 
+\index{Krop\+::\+Krohonde\+::\+Game@{Krop\+::\+Krohonde\+::\+Game}!Change\+Garden@{Change\+Garden}}
+\index{Change\+Garden@{Change\+Garden}!Krop\+::\+Krohonde\+::\+Game@{Krop\+::\+Krohonde\+::\+Game}}
+\subsubsection{\texorpdfstring{Change\+Garden()}{ChangeGarden()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily static void Krop.\+Krohonde.\+Game.\+Change\+Garden (\begin{DoxyParamCaption}\item[{int}]{\+\_\+x,  }\item[{int}]{\+\_\+y }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Load default garden 
+
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+x} & Width of the garden\\
+\hline
+{\em \+\_\+y} & Height of the garden\\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_krop_1_1_krohonde_1_1_game_a4d1fe0a45ef3e7ef8600a3ccef1289b0}\label{class_krop_1_1_krohonde_1_1_game_a4d1fe0a45ef3e7ef8600a3ccef1289b0}} 
+\index{Krop\+::\+Krohonde\+::\+Game@{Krop\+::\+Krohonde\+::\+Game}!Drop\+Pheromone@{Drop\+Pheromone}}
+\index{Drop\+Pheromone@{Drop\+Pheromone}!Krop\+::\+Krohonde\+::\+Game@{Krop\+::\+Krohonde\+::\+Game}}
+\subsubsection{\texorpdfstring{Drop\+Pheromone()}{DropPheromone()}}
+{\footnotesize\ttfamily static void Krop.\+Krohonde.\+Game.\+Drop\+Pheromone (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Drop a pheromone below the ant 
+
+\mbox{\Hypertarget{class_krop_1_1_krohonde_1_1_game_a4eef675c83400a1028687124abc72406}\label{class_krop_1_1_krohonde_1_1_game_a4eef675c83400a1028687124abc72406}} 
+\index{Krop\+::\+Krohonde\+::\+Game@{Krop\+::\+Krohonde\+::\+Game}!Obstacle\+In\+Front@{Obstacle\+In\+Front}}
+\index{Obstacle\+In\+Front@{Obstacle\+In\+Front}!Krop\+::\+Krohonde\+::\+Game@{Krop\+::\+Krohonde\+::\+Game}}
+\subsubsection{\texorpdfstring{Obstacle\+In\+Front()}{ObstacleInFront()}}
+{\footnotesize\ttfamily static bool Krop.\+Krohonde.\+Game.\+Obstacle\+In\+Front (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Check if there is an obstacle in front of the ant 
+
+\begin{DoxyReturn}{Returns}
+Is\+Solid of the block
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_krop_1_1_krohonde_1_1_game_a6bca313b39a9effdc456b6a31f5af50f}\label{class_krop_1_1_krohonde_1_1_game_a6bca313b39a9effdc456b6a31f5af50f}} 
+\index{Krop\+::\+Krohonde\+::\+Game@{Krop\+::\+Krohonde\+::\+Game}!Obstacle\+On\+Left@{Obstacle\+On\+Left}}
+\index{Obstacle\+On\+Left@{Obstacle\+On\+Left}!Krop\+::\+Krohonde\+::\+Game@{Krop\+::\+Krohonde\+::\+Game}}
+\subsubsection{\texorpdfstring{Obstacle\+On\+Left()}{ObstacleOnLeft()}}
+{\footnotesize\ttfamily static bool Krop.\+Krohonde.\+Game.\+Obstacle\+On\+Left (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Check if there is an obstacle on the left of the ant 
+
+\begin{DoxyReturn}{Returns}
+Is\+Solid of the block
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_krop_1_1_krohonde_1_1_game_a7a4f81955b1da1871586ee8f311cc20e}\label{class_krop_1_1_krohonde_1_1_game_a7a4f81955b1da1871586ee8f311cc20e}} 
+\index{Krop\+::\+Krohonde\+::\+Game@{Krop\+::\+Krohonde\+::\+Game}!Obstacle\+On\+Right@{Obstacle\+On\+Right}}
+\index{Obstacle\+On\+Right@{Obstacle\+On\+Right}!Krop\+::\+Krohonde\+::\+Game@{Krop\+::\+Krohonde\+::\+Game}}
+\subsubsection{\texorpdfstring{Obstacle\+On\+Right()}{ObstacleOnRight()}}
+{\footnotesize\ttfamily static bool Krop.\+Krohonde.\+Game.\+Obstacle\+On\+Right (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Check if there is an obstacle on the right of the ant 
+
+\begin{DoxyReturn}{Returns}
+Is\+Solid of the block
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_krop_1_1_krohonde_1_1_game_ae417ed79f31ff0280ca92ec3202990e3}\label{class_krop_1_1_krohonde_1_1_game_ae417ed79f31ff0280ca92ec3202990e3}} 
+\index{Krop\+::\+Krohonde\+::\+Game@{Krop\+::\+Krohonde\+::\+Game}!On\+Closing@{On\+Closing}}
+\index{On\+Closing@{On\+Closing}!Krop\+::\+Krohonde\+::\+Game@{Krop\+::\+Krohonde\+::\+Game}}
+\subsubsection{\texorpdfstring{On\+Closing()}{OnClosing()}}
+{\footnotesize\ttfamily override void Krop.\+Krohonde.\+Game.\+On\+Closing (\begin{DoxyParamCaption}\item[{Cancel\+Event\+Args}]{e }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Close \mbox{\hyperlink{namespace_krop}{Krop}} 
+
+
+\begin{DoxyParams}{Parameters}
+{\em e} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_krop_1_1_krohonde_1_1_game_a1d0295e8614a48b8a81552b209c5ed4a}\label{class_krop_1_1_krohonde_1_1_game_a1d0295e8614a48b8a81552b209c5ed4a}} 
+\index{Krop\+::\+Krohonde\+::\+Game@{Krop\+::\+Krohonde\+::\+Game}!On\+Load@{On\+Load}}
+\index{On\+Load@{On\+Load}!Krop\+::\+Krohonde\+::\+Game@{Krop\+::\+Krohonde\+::\+Game}}
+\subsubsection{\texorpdfstring{On\+Load()}{OnLoad()}}
+{\footnotesize\ttfamily override void Krop.\+Krohonde.\+Game.\+On\+Load (\begin{DoxyParamCaption}\item[{Event\+Args}]{e }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Start when the program loads 
+
+
+\begin{DoxyParams}{Parameters}
+{\em e} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_krop_1_1_krohonde_1_1_game_a4cc704bda7106616a4d467743bf703d6}\label{class_krop_1_1_krohonde_1_1_game_a4cc704bda7106616a4d467743bf703d6}} 
+\index{Krop\+::\+Krohonde\+::\+Game@{Krop\+::\+Krohonde\+::\+Game}!On\+Pheromone@{On\+Pheromone}}
+\index{On\+Pheromone@{On\+Pheromone}!Krop\+::\+Krohonde\+::\+Game@{Krop\+::\+Krohonde\+::\+Game}}
+\subsubsection{\texorpdfstring{On\+Pheromone()}{OnPheromone()}}
+{\footnotesize\ttfamily static bool Krop.\+Krohonde.\+Game.\+On\+Pheromone (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Check if the ant is on a pheromone 
+
+\begin{DoxyReturn}{Returns}
+Is\+Pheromone of the block
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_krop_1_1_krohonde_1_1_game_ab12bfce981cec214fe7f8e35abd342eb}\label{class_krop_1_1_krohonde_1_1_game_ab12bfce981cec214fe7f8e35abd342eb}} 
+\index{Krop\+::\+Krohonde\+::\+Game@{Krop\+::\+Krohonde\+::\+Game}!On\+Render\+Frame@{On\+Render\+Frame}}
+\index{On\+Render\+Frame@{On\+Render\+Frame}!Krop\+::\+Krohonde\+::\+Game@{Krop\+::\+Krohonde\+::\+Game}}
+\subsubsection{\texorpdfstring{On\+Render\+Frame()}{OnRenderFrame()}}
+{\footnotesize\ttfamily override void Krop.\+Krohonde.\+Game.\+On\+Render\+Frame (\begin{DoxyParamCaption}\item[{Frame\+Event\+Args}]{e }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Manage the elements display on the window 
+
+
+\begin{DoxyParams}{Parameters}
+{\em e} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_krop_1_1_krohonde_1_1_game_ad88326ce1906f9e45caa3005781a70a2}\label{class_krop_1_1_krohonde_1_1_game_ad88326ce1906f9e45caa3005781a70a2}} 
+\index{Krop\+::\+Krohonde\+::\+Game@{Krop\+::\+Krohonde\+::\+Game}!On\+Update\+Frame@{On\+Update\+Frame}}
+\index{On\+Update\+Frame@{On\+Update\+Frame}!Krop\+::\+Krohonde\+::\+Game@{Krop\+::\+Krohonde\+::\+Game}}
+\subsubsection{\texorpdfstring{On\+Update\+Frame()}{OnUpdateFrame()}}
+{\footnotesize\ttfamily override void Krop.\+Krohonde.\+Game.\+On\+Update\+Frame (\begin{DoxyParamCaption}\item[{Frame\+Event\+Args}]{e }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Start on each update frame This function starts all the calculation functions of the differents garden elements like the new position, the sprite 
+
+
+\begin{DoxyParams}{Parameters}
+{\em e} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_krop_1_1_krohonde_1_1_game_a1478a79991c3ede806daa5a2e6bb1f69}\label{class_krop_1_1_krohonde_1_1_game_a1478a79991c3ede806daa5a2e6bb1f69}} 
+\index{Krop\+::\+Krohonde\+::\+Game@{Krop\+::\+Krohonde\+::\+Game}!Place\+Is\+Free@{Place\+Is\+Free}}
+\index{Place\+Is\+Free@{Place\+Is\+Free}!Krop\+::\+Krohonde\+::\+Game@{Krop\+::\+Krohonde\+::\+Game}}
+\subsubsection{\texorpdfstring{Place\+Is\+Free()}{PlaceIsFree()}}
+{\footnotesize\ttfamily static bool Krop.\+Krohonde.\+Game.\+Place\+Is\+Free (\begin{DoxyParamCaption}\item[{int}]{\+\_\+posX,  }\item[{int}]{\+\_\+posY }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Check if the grid square is of type grass 
+
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+posX} & \\
+\hline
+{\em \+\_\+posY} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+!\+Is\+Solid of the block
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_krop_1_1_krohonde_1_1_game_a17afa697841f604772d61aaf2b8719f8}\label{class_krop_1_1_krohonde_1_1_game_a17afa697841f604772d61aaf2b8719f8}} 
+\index{Krop\+::\+Krohonde\+::\+Game@{Krop\+::\+Krohonde\+::\+Game}!Take\+Pheromone@{Take\+Pheromone}}
+\index{Take\+Pheromone@{Take\+Pheromone}!Krop\+::\+Krohonde\+::\+Game@{Krop\+::\+Krohonde\+::\+Game}}
+\subsubsection{\texorpdfstring{Take\+Pheromone()}{TakePheromone()}}
+{\footnotesize\ttfamily static void Krop.\+Krohonde.\+Game.\+Take\+Pheromone (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Take a pheromone below the ant 
+
+
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{class_krop_1_1_krohonde_1_1_game_a985a69e1fe6b1e94b969ed3cffcc0ca4}\label{class_krop_1_1_krohonde_1_1_game_a985a69e1fe6b1e94b969ed3cffcc0ca4}} 
+\index{Krop\+::\+Krohonde\+::\+Game@{Krop\+::\+Krohonde\+::\+Game}!A\+NT@{A\+NT}}
+\index{A\+NT@{A\+NT}!Krop\+::\+Krohonde\+::\+Game@{Krop\+::\+Krohonde\+::\+Game}}
+\subsubsection{\texorpdfstring{A\+NT}{ANT}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_krop_1_1_krohonde_1_1_ant}{Ant}} Krop.\+Krohonde.\+Game.\+A\+NT = new \mbox{\hyperlink{class_krop_1_1_krohonde_1_1_ant}{Ant}}()\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{class_krop_1_1_krohonde_1_1_game_a6a3e7db26ac0b9f80507bf6ea36d4fd2}\label{class_krop_1_1_krohonde_1_1_game_a6a3e7db26ac0b9f80507bf6ea36d4fd2}} 
+\index{Krop\+::\+Krohonde\+::\+Game@{Krop\+::\+Krohonde\+::\+Game}!E\+X\+I\+T\+\_\+\+K\+R\+O\+H\+O\+N\+DE@{E\+X\+I\+T\+\_\+\+K\+R\+O\+H\+O\+N\+DE}}
+\index{E\+X\+I\+T\+\_\+\+K\+R\+O\+H\+O\+N\+DE@{E\+X\+I\+T\+\_\+\+K\+R\+O\+H\+O\+N\+DE}!Krop\+::\+Krohonde\+::\+Game@{Krop\+::\+Krohonde\+::\+Game}}
+\subsubsection{\texorpdfstring{E\+X\+I\+T\+\_\+\+K\+R\+O\+H\+O\+N\+DE}{EXIT\_KROHONDE}}
+{\footnotesize\ttfamily bool Krop.\+Krohonde.\+Game.\+E\+X\+I\+T\+\_\+\+K\+R\+O\+H\+O\+N\+DE = false\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{class_krop_1_1_krohonde_1_1_game_ae73d97c0f81728f4ff142d36ab9dde4d}\label{class_krop_1_1_krohonde_1_1_game_ae73d97c0f81728f4ff142d36ab9dde4d}} 
+\index{Krop\+::\+Krohonde\+::\+Game@{Krop\+::\+Krohonde\+::\+Game}!G\+R\+I\+D\+S\+I\+ZE@{G\+R\+I\+D\+S\+I\+ZE}}
+\index{G\+R\+I\+D\+S\+I\+ZE@{G\+R\+I\+D\+S\+I\+ZE}!Krop\+::\+Krohonde\+::\+Game@{Krop\+::\+Krohonde\+::\+Game}}
+\subsubsection{\texorpdfstring{G\+R\+I\+D\+S\+I\+ZE}{GRIDSIZE}}
+{\footnotesize\ttfamily int Krop.\+Krohonde.\+Game.\+G\+R\+I\+D\+S\+I\+ZE = 24\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{class_krop_1_1_krohonde_1_1_game_a248438b8c8aa03b448ccf9203b0754e7}\label{class_krop_1_1_krohonde_1_1_game_a248438b8c8aa03b448ccf9203b0754e7}} 
+\index{Krop\+::\+Krohonde\+::\+Game@{Krop\+::\+Krohonde\+::\+Game}!H\+E\+I\+G\+H\+T\+G\+A\+R\+D\+EN@{H\+E\+I\+G\+H\+T\+G\+A\+R\+D\+EN}}
+\index{H\+E\+I\+G\+H\+T\+G\+A\+R\+D\+EN@{H\+E\+I\+G\+H\+T\+G\+A\+R\+D\+EN}!Krop\+::\+Krohonde\+::\+Game@{Krop\+::\+Krohonde\+::\+Game}}
+\subsubsection{\texorpdfstring{H\+E\+I\+G\+H\+T\+G\+A\+R\+D\+EN}{HEIGHTGARDEN}}
+{\footnotesize\ttfamily int Krop.\+Krohonde.\+Game.\+H\+E\+I\+G\+H\+T\+G\+A\+R\+D\+EN = 30\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{class_krop_1_1_krohonde_1_1_game_ad75f5df73247858cd812bdeebb40d39e}\label{class_krop_1_1_krohonde_1_1_game_ad75f5df73247858cd812bdeebb40d39e}} 
+\index{Krop\+::\+Krohonde\+::\+Game@{Krop\+::\+Krohonde\+::\+Game}!H\+E\+I\+G\+H\+T\+W\+I\+N\+D\+OW@{H\+E\+I\+G\+H\+T\+W\+I\+N\+D\+OW}}
+\index{H\+E\+I\+G\+H\+T\+W\+I\+N\+D\+OW@{H\+E\+I\+G\+H\+T\+W\+I\+N\+D\+OW}!Krop\+::\+Krohonde\+::\+Game@{Krop\+::\+Krohonde\+::\+Game}}
+\subsubsection{\texorpdfstring{H\+E\+I\+G\+H\+T\+W\+I\+N\+D\+OW}{HEIGHTWINDOW}}
+{\footnotesize\ttfamily int Krop.\+Krohonde.\+Game.\+H\+E\+I\+G\+H\+T\+W\+I\+N\+D\+OW = 720\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{class_krop_1_1_krohonde_1_1_game_a58093d75ef6e73acbff1eb82c77cd9b9}\label{class_krop_1_1_krohonde_1_1_game_a58093d75ef6e73acbff1eb82c77cd9b9}} 
+\index{Krop\+::\+Krohonde\+::\+Game@{Krop\+::\+Krohonde\+::\+Game}!T\+I\+L\+E\+S\+ET@{T\+I\+L\+E\+S\+ET}}
+\index{T\+I\+L\+E\+S\+ET@{T\+I\+L\+E\+S\+ET}!Krop\+::\+Krohonde\+::\+Game@{Krop\+::\+Krohonde\+::\+Game}}
+\subsubsection{\texorpdfstring{T\+I\+L\+E\+S\+ET}{TILESET}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_krop_1_1_krohonde_1_1_texture2_d}{Texture2D}} Krop.\+Krohonde.\+Game.\+T\+I\+L\+E\+S\+ET\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{class_krop_1_1_krohonde_1_1_game_a1351c196ec69b91703900e09a713f49a}\label{class_krop_1_1_krohonde_1_1_game_a1351c196ec69b91703900e09a713f49a}} 
+\index{Krop\+::\+Krohonde\+::\+Game@{Krop\+::\+Krohonde\+::\+Game}!T\+I\+L\+E\+S\+I\+ZE@{T\+I\+L\+E\+S\+I\+ZE}}
+\index{T\+I\+L\+E\+S\+I\+ZE@{T\+I\+L\+E\+S\+I\+ZE}!Krop\+::\+Krohonde\+::\+Game@{Krop\+::\+Krohonde\+::\+Game}}
+\subsubsection{\texorpdfstring{T\+I\+L\+E\+S\+I\+ZE}{TILESIZE}}
+{\footnotesize\ttfamily int Krop.\+Krohonde.\+Game.\+T\+I\+L\+E\+S\+I\+ZE = 32\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{class_krop_1_1_krohonde_1_1_game_a2e5966eba694146acb742074bd5d9ae3}\label{class_krop_1_1_krohonde_1_1_game_a2e5966eba694146acb742074bd5d9ae3}} 
+\index{Krop\+::\+Krohonde\+::\+Game@{Krop\+::\+Krohonde\+::\+Game}!W\+I\+D\+T\+H\+G\+A\+R\+D\+EN@{W\+I\+D\+T\+H\+G\+A\+R\+D\+EN}}
+\index{W\+I\+D\+T\+H\+G\+A\+R\+D\+EN@{W\+I\+D\+T\+H\+G\+A\+R\+D\+EN}!Krop\+::\+Krohonde\+::\+Game@{Krop\+::\+Krohonde\+::\+Game}}
+\subsubsection{\texorpdfstring{W\+I\+D\+T\+H\+G\+A\+R\+D\+EN}{WIDTHGARDEN}}
+{\footnotesize\ttfamily int Krop.\+Krohonde.\+Game.\+W\+I\+D\+T\+H\+G\+A\+R\+D\+EN = 40\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{class_krop_1_1_krohonde_1_1_game_a3cff1b81bcc3759e697aa76cee2d758e}\label{class_krop_1_1_krohonde_1_1_game_a3cff1b81bcc3759e697aa76cee2d758e}} 
+\index{Krop\+::\+Krohonde\+::\+Game@{Krop\+::\+Krohonde\+::\+Game}!W\+I\+D\+T\+H\+W\+I\+N\+D\+OW@{W\+I\+D\+T\+H\+W\+I\+N\+D\+OW}}
+\index{W\+I\+D\+T\+H\+W\+I\+N\+D\+OW@{W\+I\+D\+T\+H\+W\+I\+N\+D\+OW}!Krop\+::\+Krohonde\+::\+Game@{Krop\+::\+Krohonde\+::\+Game}}
+\subsubsection{\texorpdfstring{W\+I\+D\+T\+H\+W\+I\+N\+D\+OW}{WIDTHWINDOW}}
+{\footnotesize\ttfamily int Krop.\+Krohonde.\+Game.\+W\+I\+D\+T\+H\+W\+I\+N\+D\+OW = 960\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/\+Stuart.\+G\+U\+E\+I\+S\+S\+A\+Z/\+Documents/\+Git\+Hub/\+Krop/\+Code/\+Krop/\+Krohonde/\mbox{\hyperlink{_game_8cs}{Game.\+cs}}\end{DoxyCompactItemize}

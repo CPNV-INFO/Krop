@@ -1,0 +1,205 @@
+\hypertarget{class_krop_1_1_krop_execution_tree_1_1_subprogram}{}\section{Krop.\+Krop\+Execution\+Tree.\+Subprogram Class Reference}
+\label{class_krop_1_1_krop_execution_tree_1_1_subprogram}\index{Krop.\+Krop\+Execution\+Tree.\+Subprogram@{Krop.\+Krop\+Execution\+Tree.\+Subprogram}}
+
+
+A \mbox{\hyperlink{class_krop_1_1_krop_execution_tree_1_1_subprogram}{Subprogram}} is a sequence of executable object (which can be subprograms!)  
+
+
+Inheritance diagram for Krop.\+Krop\+Execution\+Tree.\+Subprogram\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_krop_1_1_krop_execution_tree_1_1_subprogram}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_krop_1_1_krop_execution_tree_1_1_subprogram_a200f90697de001a2fc317cd185db6b6b}{Subprogram}} (Node \+\_\+node\+Program)
+\item 
+\mbox{\hyperlink{class_krop_1_1_krop_execution_tree_1_1_subprogram_acfbfb331839d3687a7c417303ce3ea3d}{Subprogram}} (Node \+\_\+node\+Program, \mbox{\hyperlink{class_krop_1_1_krop_execution_tree_1_1_subprogram}{Subprogram}} \+\_\+subprogram\+Subprogram)
+\item 
+void \mbox{\hyperlink{class_krop_1_1_krop_execution_tree_1_1_subprogram_ae31602f28300c7cf092ac127b537a9df}{Add\+Instruction}} (\mbox{\hyperlink{class_krop_1_1_krop_execution_tree_1_1_abstract_class_1_1_executable}{Executable}} \+\_\+instruction)
+\begin{DoxyCompactList}\small\item\em Add an executable object at the end of the subprogram \end{DoxyCompactList}\item 
+override bool \mbox{\hyperlink{class_krop_1_1_krop_execution_tree_1_1_subprogram_ae33466ddf0761f860c5817a4263efd29}{Execute}} ()
+\end{DoxyCompactItemize}
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{class_krop_1_1_krop_execution_tree_1_1_abstract_class_1_1_measurable}{Measurable}}$<$ Boolean $>$ \mbox{\hyperlink{class_krop_1_1_krop_execution_tree_1_1_subprogram_a3626c09fb9bf11430e8541e2c9740d81}{Set\+Cond}} (Node \+\_\+node\+Condition\+Statement, \mbox{\hyperlink{class_krop_1_1_krop_execution_tree_1_1_subprogram}{Subprogram}} \+\_\+parent\+Subprogram)
+\begin{DoxyCompactList}\small\item\em Determine the condition type and create it \end{DoxyCompactList}\item 
+static bool \mbox{\hyperlink{class_krop_1_1_krop_execution_tree_1_1_subprogram_af4e885168e0d7bbde2cf26f9f98c7af4}{Var\+Exists}} (string \+\_\+var\+Name, \mbox{\hyperlink{class_krop_1_1_krop_execution_tree_1_1_subprogram}{Subprogram}} \+\_\+parent\+Subprogram)
+\begin{DoxyCompactList}\small\item\em Check if the variable already exists \end{DoxyCompactList}\item 
+static string \mbox{\hyperlink{class_krop_1_1_krop_execution_tree_1_1_subprogram_abd8a129fb5f66a36c676c766561ffdea}{Var\+To\+String}} (string \+\_\+var\+Name, \mbox{\hyperlink{class_krop_1_1_krop_execution_tree_1_1_subprogram}{Subprogram}} \+\_\+parent\+Subprogram)
+\begin{DoxyCompactList}\small\item\em Return the variable string \end{DoxyCompactList}\item 
+static int \mbox{\hyperlink{class_krop_1_1_krop_execution_tree_1_1_subprogram_a3f33742aea9a7150f0dda2a17e84cf08}{Get\+Int\+Var\+Value}} (string \+\_\+var\+Name, \mbox{\hyperlink{class_krop_1_1_krop_execution_tree_1_1_subprogram}{Subprogram}} \+\_\+parent\+Subprogram)
+\begin{DoxyCompactList}\small\item\em Return the value of an Int variable \end{DoxyCompactList}\item 
+static \mbox{\hyperlink{interface_krop_1_1_krop_execution_tree_1_1_interface_1_1_i_variable}{I\+Variable}} \mbox{\hyperlink{class_krop_1_1_krop_execution_tree_1_1_subprogram_a51c0e1153e77771a566d7b6a96d0f26e}{Get\+Var}} (string \+\_\+var\+Name, \mbox{\hyperlink{class_krop_1_1_krop_execution_tree_1_1_subprogram}{Subprogram}} \+\_\+parent\+Subprogram)
+\begin{DoxyCompactList}\small\item\em Return the variable \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_krop_1_1_krop_execution_tree_1_1_subprogram}{Subprogram}} \mbox{\hyperlink{class_krop_1_1_krop_execution_tree_1_1_subprogram_a8c7a1466aa0fa810acf3608419dae5d7}{Parent\+Subprogram}}
+\item 
+List$<$ \mbox{\hyperlink{interface_krop_1_1_krop_execution_tree_1_1_interface_1_1_i_variable}{I\+Variable}} $>$ \mbox{\hyperlink{class_krop_1_1_krop_execution_tree_1_1_subprogram_a22b8af148b8bf0bef634a3efb1290a94}{List\+Var}}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+A \mbox{\hyperlink{class_krop_1_1_krop_execution_tree_1_1_subprogram}{Subprogram}} is a sequence of executable object (which can be subprograms!) 
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_krop_1_1_krop_execution_tree_1_1_subprogram_a200f90697de001a2fc317cd185db6b6b}\label{class_krop_1_1_krop_execution_tree_1_1_subprogram_a200f90697de001a2fc317cd185db6b6b}} 
+\index{Krop\+::\+Krop\+Execution\+Tree\+::\+Subprogram@{Krop\+::\+Krop\+Execution\+Tree\+::\+Subprogram}!Subprogram@{Subprogram}}
+\index{Subprogram@{Subprogram}!Krop\+::\+Krop\+Execution\+Tree\+::\+Subprogram@{Krop\+::\+Krop\+Execution\+Tree\+::\+Subprogram}}
+\subsubsection{\texorpdfstring{Subprogram()}{Subprogram()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily Krop.\+Krop\+Execution\+Tree.\+Subprogram.\+Subprogram (\begin{DoxyParamCaption}\item[{Node}]{\+\_\+node\+Program }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_krop_1_1_krop_execution_tree_1_1_subprogram_acfbfb331839d3687a7c417303ce3ea3d}\label{class_krop_1_1_krop_execution_tree_1_1_subprogram_acfbfb331839d3687a7c417303ce3ea3d}} 
+\index{Krop\+::\+Krop\+Execution\+Tree\+::\+Subprogram@{Krop\+::\+Krop\+Execution\+Tree\+::\+Subprogram}!Subprogram@{Subprogram}}
+\index{Subprogram@{Subprogram}!Krop\+::\+Krop\+Execution\+Tree\+::\+Subprogram@{Krop\+::\+Krop\+Execution\+Tree\+::\+Subprogram}}
+\subsubsection{\texorpdfstring{Subprogram()}{Subprogram()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily Krop.\+Krop\+Execution\+Tree.\+Subprogram.\+Subprogram (\begin{DoxyParamCaption}\item[{Node}]{\+\_\+node\+Program,  }\item[{\mbox{\hyperlink{class_krop_1_1_krop_execution_tree_1_1_subprogram}{Subprogram}}}]{\+\_\+subprogram\+Subprogram }\end{DoxyParamCaption})}
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_krop_1_1_krop_execution_tree_1_1_subprogram_ae31602f28300c7cf092ac127b537a9df}\label{class_krop_1_1_krop_execution_tree_1_1_subprogram_ae31602f28300c7cf092ac127b537a9df}} 
+\index{Krop\+::\+Krop\+Execution\+Tree\+::\+Subprogram@{Krop\+::\+Krop\+Execution\+Tree\+::\+Subprogram}!Add\+Instruction@{Add\+Instruction}}
+\index{Add\+Instruction@{Add\+Instruction}!Krop\+::\+Krop\+Execution\+Tree\+::\+Subprogram@{Krop\+::\+Krop\+Execution\+Tree\+::\+Subprogram}}
+\subsubsection{\texorpdfstring{Add\+Instruction()}{AddInstruction()}}
+{\footnotesize\ttfamily void Krop.\+Krop\+Execution\+Tree.\+Subprogram.\+Add\+Instruction (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_krop_1_1_krop_execution_tree_1_1_abstract_class_1_1_executable}{Executable}}}]{\+\_\+instruction }\end{DoxyParamCaption})}
+
+
+
+Add an executable object at the end of the subprogram 
+
+\mbox{\Hypertarget{class_krop_1_1_krop_execution_tree_1_1_subprogram_ae33466ddf0761f860c5817a4263efd29}\label{class_krop_1_1_krop_execution_tree_1_1_subprogram_ae33466ddf0761f860c5817a4263efd29}} 
+\index{Krop\+::\+Krop\+Execution\+Tree\+::\+Subprogram@{Krop\+::\+Krop\+Execution\+Tree\+::\+Subprogram}!Execute@{Execute}}
+\index{Execute@{Execute}!Krop\+::\+Krop\+Execution\+Tree\+::\+Subprogram@{Krop\+::\+Krop\+Execution\+Tree\+::\+Subprogram}}
+\subsubsection{\texorpdfstring{Execute()}{Execute()}}
+{\footnotesize\ttfamily override bool Krop.\+Krop\+Execution\+Tree.\+Subprogram.\+Execute (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{class_krop_1_1_krop_execution_tree_1_1_abstract_class_1_1_executable_ac32692ce44b5f938a90111ee27e7b684}{Krop.\+Krop\+Execution\+Tree.\+Abstract\+Class.\+Executable}}.
+
+\mbox{\Hypertarget{class_krop_1_1_krop_execution_tree_1_1_subprogram_a3f33742aea9a7150f0dda2a17e84cf08}\label{class_krop_1_1_krop_execution_tree_1_1_subprogram_a3f33742aea9a7150f0dda2a17e84cf08}} 
+\index{Krop\+::\+Krop\+Execution\+Tree\+::\+Subprogram@{Krop\+::\+Krop\+Execution\+Tree\+::\+Subprogram}!Get\+Int\+Var\+Value@{Get\+Int\+Var\+Value}}
+\index{Get\+Int\+Var\+Value@{Get\+Int\+Var\+Value}!Krop\+::\+Krop\+Execution\+Tree\+::\+Subprogram@{Krop\+::\+Krop\+Execution\+Tree\+::\+Subprogram}}
+\subsubsection{\texorpdfstring{Get\+Int\+Var\+Value()}{GetIntVarValue()}}
+{\footnotesize\ttfamily static int Krop.\+Krop\+Execution\+Tree.\+Subprogram.\+Get\+Int\+Var\+Value (\begin{DoxyParamCaption}\item[{string}]{\+\_\+var\+Name,  }\item[{\mbox{\hyperlink{class_krop_1_1_krop_execution_tree_1_1_subprogram}{Subprogram}}}]{\+\_\+parent\+Subprogram }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Return the value of an Int variable 
+
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+var\+Name} & \mbox{\hyperlink{namespace_krop_1_1_krop_execution_tree_1_1_variable}{Variable}} Name\\
+\hline
+{\em \+\_\+parent\+Subprogram} & Parent \mbox{\hyperlink{class_krop_1_1_krop_execution_tree_1_1_subprogram}{Subprogram}}\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Int variable value
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_krop_1_1_krop_execution_tree_1_1_subprogram_a51c0e1153e77771a566d7b6a96d0f26e}\label{class_krop_1_1_krop_execution_tree_1_1_subprogram_a51c0e1153e77771a566d7b6a96d0f26e}} 
+\index{Krop\+::\+Krop\+Execution\+Tree\+::\+Subprogram@{Krop\+::\+Krop\+Execution\+Tree\+::\+Subprogram}!Get\+Var@{Get\+Var}}
+\index{Get\+Var@{Get\+Var}!Krop\+::\+Krop\+Execution\+Tree\+::\+Subprogram@{Krop\+::\+Krop\+Execution\+Tree\+::\+Subprogram}}
+\subsubsection{\texorpdfstring{Get\+Var()}{GetVar()}}
+{\footnotesize\ttfamily static \mbox{\hyperlink{interface_krop_1_1_krop_execution_tree_1_1_interface_1_1_i_variable}{I\+Variable}} Krop.\+Krop\+Execution\+Tree.\+Subprogram.\+Get\+Var (\begin{DoxyParamCaption}\item[{string}]{\+\_\+var\+Name,  }\item[{\mbox{\hyperlink{class_krop_1_1_krop_execution_tree_1_1_subprogram}{Subprogram}}}]{\+\_\+parent\+Subprogram }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Return the variable 
+
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+var\+Name} & \mbox{\hyperlink{namespace_krop_1_1_krop_execution_tree_1_1_variable}{Variable}} Name\\
+\hline
+{\em \+\_\+parent\+Subprogram} & Parent \mbox{\hyperlink{class_krop_1_1_krop_execution_tree_1_1_subprogram}{Subprogram}}\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\mbox{\hyperlink{namespace_krop_1_1_krop_execution_tree_1_1_variable}{Variable}}
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_krop_1_1_krop_execution_tree_1_1_subprogram_a3626c09fb9bf11430e8541e2c9740d81}\label{class_krop_1_1_krop_execution_tree_1_1_subprogram_a3626c09fb9bf11430e8541e2c9740d81}} 
+\index{Krop\+::\+Krop\+Execution\+Tree\+::\+Subprogram@{Krop\+::\+Krop\+Execution\+Tree\+::\+Subprogram}!Set\+Cond@{Set\+Cond}}
+\index{Set\+Cond@{Set\+Cond}!Krop\+::\+Krop\+Execution\+Tree\+::\+Subprogram@{Krop\+::\+Krop\+Execution\+Tree\+::\+Subprogram}}
+\subsubsection{\texorpdfstring{Set\+Cond()}{SetCond()}}
+{\footnotesize\ttfamily static \mbox{\hyperlink{class_krop_1_1_krop_execution_tree_1_1_abstract_class_1_1_measurable}{Measurable}}$<$Boolean$>$ Krop.\+Krop\+Execution\+Tree.\+Subprogram.\+Set\+Cond (\begin{DoxyParamCaption}\item[{Node}]{\+\_\+node\+Condition\+Statement,  }\item[{\mbox{\hyperlink{class_krop_1_1_krop_execution_tree_1_1_subprogram}{Subprogram}}}]{\+\_\+parent\+Subprogram }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Determine the condition type and create it 
+
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+node\+Condition\+Statement} & Node containing the \mbox{\hyperlink{namespace_krop_1_1_krop_execution_tree_1_1_condition}{Condition}}\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_krop_1_1_krop_execution_tree_1_1_subprogram_af4e885168e0d7bbde2cf26f9f98c7af4}\label{class_krop_1_1_krop_execution_tree_1_1_subprogram_af4e885168e0d7bbde2cf26f9f98c7af4}} 
+\index{Krop\+::\+Krop\+Execution\+Tree\+::\+Subprogram@{Krop\+::\+Krop\+Execution\+Tree\+::\+Subprogram}!Var\+Exists@{Var\+Exists}}
+\index{Var\+Exists@{Var\+Exists}!Krop\+::\+Krop\+Execution\+Tree\+::\+Subprogram@{Krop\+::\+Krop\+Execution\+Tree\+::\+Subprogram}}
+\subsubsection{\texorpdfstring{Var\+Exists()}{VarExists()}}
+{\footnotesize\ttfamily static bool Krop.\+Krop\+Execution\+Tree.\+Subprogram.\+Var\+Exists (\begin{DoxyParamCaption}\item[{string}]{\+\_\+var\+Name,  }\item[{\mbox{\hyperlink{class_krop_1_1_krop_execution_tree_1_1_subprogram}{Subprogram}}}]{\+\_\+parent\+Subprogram }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Check if the variable already exists 
+
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+var\+Name} & \mbox{\hyperlink{namespace_krop_1_1_krop_execution_tree_1_1_variable}{Variable}} Name\\
+\hline
+{\em \+\_\+parent\+Subprogram} & Parent \mbox{\hyperlink{class_krop_1_1_krop_execution_tree_1_1_subprogram}{Subprogram}}\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Result
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_krop_1_1_krop_execution_tree_1_1_subprogram_abd8a129fb5f66a36c676c766561ffdea}\label{class_krop_1_1_krop_execution_tree_1_1_subprogram_abd8a129fb5f66a36c676c766561ffdea}} 
+\index{Krop\+::\+Krop\+Execution\+Tree\+::\+Subprogram@{Krop\+::\+Krop\+Execution\+Tree\+::\+Subprogram}!Var\+To\+String@{Var\+To\+String}}
+\index{Var\+To\+String@{Var\+To\+String}!Krop\+::\+Krop\+Execution\+Tree\+::\+Subprogram@{Krop\+::\+Krop\+Execution\+Tree\+::\+Subprogram}}
+\subsubsection{\texorpdfstring{Var\+To\+String()}{VarToString()}}
+{\footnotesize\ttfamily static string Krop.\+Krop\+Execution\+Tree.\+Subprogram.\+Var\+To\+String (\begin{DoxyParamCaption}\item[{string}]{\+\_\+var\+Name,  }\item[{\mbox{\hyperlink{class_krop_1_1_krop_execution_tree_1_1_subprogram}{Subprogram}}}]{\+\_\+parent\+Subprogram }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Return the variable string 
+
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+var\+Name} & \mbox{\hyperlink{namespace_krop_1_1_krop_execution_tree_1_1_variable}{Variable}} Name\\
+\hline
+{\em \+\_\+parent\+Subprogram} & Parent \mbox{\hyperlink{class_krop_1_1_krop_execution_tree_1_1_subprogram}{Subprogram}}\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\mbox{\hyperlink{namespace_krop_1_1_krop_execution_tree_1_1_variable}{Variable}} string
+\end{DoxyReturn}
+
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{class_krop_1_1_krop_execution_tree_1_1_subprogram_a22b8af148b8bf0bef634a3efb1290a94}\label{class_krop_1_1_krop_execution_tree_1_1_subprogram_a22b8af148b8bf0bef634a3efb1290a94}} 
+\index{Krop\+::\+Krop\+Execution\+Tree\+::\+Subprogram@{Krop\+::\+Krop\+Execution\+Tree\+::\+Subprogram}!List\+Var@{List\+Var}}
+\index{List\+Var@{List\+Var}!Krop\+::\+Krop\+Execution\+Tree\+::\+Subprogram@{Krop\+::\+Krop\+Execution\+Tree\+::\+Subprogram}}
+\subsubsection{\texorpdfstring{List\+Var}{ListVar}}
+{\footnotesize\ttfamily List$<$\mbox{\hyperlink{interface_krop_1_1_krop_execution_tree_1_1_interface_1_1_i_variable}{I\+Variable}}$>$ Krop.\+Krop\+Execution\+Tree.\+Subprogram.\+List\+Var}
+
+\mbox{\Hypertarget{class_krop_1_1_krop_execution_tree_1_1_subprogram_a8c7a1466aa0fa810acf3608419dae5d7}\label{class_krop_1_1_krop_execution_tree_1_1_subprogram_a8c7a1466aa0fa810acf3608419dae5d7}} 
+\index{Krop\+::\+Krop\+Execution\+Tree\+::\+Subprogram@{Krop\+::\+Krop\+Execution\+Tree\+::\+Subprogram}!Parent\+Subprogram@{Parent\+Subprogram}}
+\index{Parent\+Subprogram@{Parent\+Subprogram}!Krop\+::\+Krop\+Execution\+Tree\+::\+Subprogram@{Krop\+::\+Krop\+Execution\+Tree\+::\+Subprogram}}
+\subsubsection{\texorpdfstring{Parent\+Subprogram}{ParentSubprogram}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_krop_1_1_krop_execution_tree_1_1_subprogram}{Subprogram}} Krop.\+Krop\+Execution\+Tree.\+Subprogram.\+Parent\+Subprogram}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/\+Stuart.\+G\+U\+E\+I\+S\+S\+A\+Z/\+Documents/\+Git\+Hub/\+Krop/\+Code/\+Krop/\+Krop\+Execution\+Tree/\mbox{\hyperlink{_subprogram_8cs}{Subprogram.\+cs}}\end{DoxyCompactItemize}

@@ -1,0 +1,8 @@
+while (true)
+{
+	while(not obstacleenface)
+	{
+		avancer;
+	}
+	tourneragauche;
+}

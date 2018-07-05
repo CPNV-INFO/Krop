@@ -1,0 +1,18 @@
+int NbPheromone = 0;
+int NbAvancer = 0;
+while(not NbPheromone = 7){
+	int NbAvancer = 0;
+	if(SurUnePheromone){
+		PrendrePheromone;
+		NbPheromone = NbPheromone + 1;
+		Dire NbPheromone;
+	}
+	if(not NbPheromone = 7){
+		Avancer;
+		NbAvancer = NbAvancer + 1;
+		Dire NbAvancer;
+	}
+}
+Dire 'fin du programme';
+Dire NbPheromone;
+Dire NbAvancer;
