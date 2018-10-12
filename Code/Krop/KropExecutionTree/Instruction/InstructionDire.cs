@@ -9,6 +9,7 @@ using PerCederberg.Grammatica.Runtime;
 using Krop.ControlWindow;
 using Krop.KropGrammaticaParser;
 using Krop.KropExecutionTree.AbstractClass;
+using System;
 
 namespace Krop.KropExecutionTree.Instruction
 {
@@ -108,7 +109,17 @@ namespace Krop.KropExecutionTree.Instruction
                 {
                     case (int)KropConstants.ATOM:
                         token = (Token)_nodeSentence.GetChildAt(i).GetChildAt(0);
-                        Value += token.GetImage();
+
+                        //Check if this is a backslashed character, like \' for printing '
+                        if (Enum.GetName(typeof(KropConstants), token.GetId()).Contains("BACKSLASH_"))
+                        {
+                            Value += token.GetImage().Replace("\\", "");
+                        }
+                        else
+                        {
+                            Value += token.GetImage();
+                        }
+
                         break;
                     case (int)KropConstants.SPACE:
                         token = (Token)_nodeSentence.GetChildAt(i);

@@ -73,6 +73,8 @@ namespace Krop.KropGrammaticaParser {
         TERM = 2023,
         TERM_REST = 2024,
         FACTOR = 2025,
-        ATOM = 2026
+        ATOM = 2026,
+        BACKSLASH_APOSTROPHE = 2027,
+        SPECIAL_CHAR = 2028
     }
 }

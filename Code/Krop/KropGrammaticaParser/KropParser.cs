@@ -405,6 +405,13 @@ namespace Krop.KropGrammaticaParser {
             alt = new ProductionPatternAlternative();
             alt.AddToken((int) KropConstants.WORD, 1, 1);
             pattern.AddAlternative(alt);
+            alt = new ProductionPatternAlternative();
+            alt.AddToken((int)KropConstants.BACKSLASH_APOSTROPHE, 1, 1);
+            pattern.AddAlternative(alt);
+            alt = new ProductionPatternAlternative();
+            alt.AddToken((int)KropConstants.SPECIAL_CHAR, 1, 1);
+            pattern.AddAlternative(alt);
+
             AddPattern(pattern);
 
             pattern = new ProductionPattern((int) SynteticPatterns.SUBPRODUCTION_1,
