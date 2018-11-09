@@ -36,15 +36,16 @@ namespace Krop.KropExecutionTree.Instruction
                     {
                         switch (_nodeDireStatement.GetChildAt(i).GetChildAt(y).GetId())
                         {
-                            case (int)KropConstants.STRING_VALUE:
+                            case (int)KropConstants.STRING_EXPRESSION:
                                 IsStringValue = true;
-                                for (int x = 0; x < _nodeDireStatement.GetChildAt(i).GetChildAt(y).GetChildCount(); x++)
+                                /*for (int x = 0; x < _nodeDireStatement.GetChildAt(i).GetChildAt(y).GetChildCount(); x++)
                                 {
                                     if (_nodeDireStatement.GetChildAt(i).GetChildAt(y).GetChildAt(x).GetId() == (int)KropConstants.SENTENCE)
                                     {
                                         CreateSentence(_nodeDireStatement.GetChildAt(i).GetChildAt(y).GetChildAt(x));
                                     }
-                                }
+                                }*/
+                                Value = AlgorithmicExpression.CalculStringExpression(_nodeDireStatement.GetChildAt(i).GetChildAt(y), _parentSubprogram);
                                 break;
                             case (int)KropConstants.ATOM:
                                 Token token;

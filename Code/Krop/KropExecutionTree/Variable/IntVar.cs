@@ -56,7 +56,7 @@ namespace Krop.KropExecutionTree.Variable
         /// <returns>String variable</returns>
         public override string ToString()
         {
-            return "Variable " + Name + " = " + Value.ToString();
+            return Value.ToString();
         }
     }
 }

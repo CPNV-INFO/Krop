@@ -78,6 +78,9 @@ namespace Krop.KropExecutionTree
                             case (int)KropConstants.INT_STATEMENT:
                                 this.AddInstruction(new InstructionInt(nodeStatement.GetChildAt(y), this));
                                 break;
+                            case (int)KropConstants.STRING_STATEMENT:
+                                this.AddInstruction(new InstructionString(nodeStatement.GetChildAt(y), this));
+                                break;
                             case (int)KropConstants.SET_VAR_STATEMENT:
                                 this.AddInstruction(new InstructionSetVar(nodeStatement.GetChildAt(y), this));
                                 break;
@@ -217,6 +220,35 @@ namespace Krop.KropExecutionTree
             if (_parentSubprogram.ParentSubprogram != null)
             {
                 return GetIntVarValue(_varName, _parentSubprogram.ParentSubprogram);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        /// Return the value of a String variable
+        /// </summary>
+        /// <param name="_varName">Variable Name</param>
+        /// <param name="_parentSubprogram">Parent Subprogram</param>
+        /// <returns>Int variable value</returns>
+        public static string GetStringVarValue(string _varName, Subprogram _parentSubprogram)
+        {
+            foreach (IVariable var in _parentSubprogram.ListVar)
+            {
+                if (var is StringVar stringVar)
+                {
+                    if (stringVar.GetName() == _varName)
+                    {
+                        return stringVar.GetValue();
+                    }
+                }
+            }
+
+            if (_parentSubprogram.ParentSubprogram != null)
+            {
+                return GetStringVarValue(_varName, _parentSubprogram.ParentSubprogram);
             }
             else
             {

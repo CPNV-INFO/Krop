@@ -31,6 +31,7 @@ NOT							 = "NOT"
 TRUE						 = "TRUE"
 FALSE						 = "FALSE"
 INT							 = "INT"
+STRING 						 = "STRING"
 CONDITION					 = <<SurUnePheromone|ObstacleEnFace|ObstacleADroite|ObstacleAGauche>>
 INSTRUCTION					 = <<PoserPheromone|PrendrePheromone|Avancer|TournerADroite|TournerAGauche>>
 EGAL 						 = "="
@@ -47,15 +48,23 @@ RIGHT_BRACE                  = "}"
 SEMICOLON					 = ";"
 APOSTROPHE					 = "'"
 SPACE 						 = " "
+EXCLAMATION					 = "!"
+QUESTION_MARK				 = "?"
+COLON						 = ":"
+COMMA						 = ","
+DOT							 = "."
 NUMBER                       = <<[0-9]+>>
-WORD 						 = <<[a-y]+>>
+WORD 						 = <<[a-z]+>>
 WHITESPACE    				 = <<[\t\n\r]+>> %ignore%
+BACKSLASH_APOSTROPHE 		 = "\'"
+QUOTE						 = <<">>
 
 %productions%
 
 program = {SPACE} {declarationStatement}  statement+ ;
 
-declarationStatement = intStatement {SPACE} ;
+declarationStatement = intStatement {SPACE}
+					   | stringStatement {SPACE} ;
 
 statement = 	instructionStatement {SPACE} 
 			| 	ifElseStatement {SPACE} 
@@ -75,6 +84,8 @@ direStatement = DIRE {SPACE} direValue SEMICOLON {SPACE};
 
 intStatement = INT SPACE+ WORD {SPACE} EGAL {SPACE} expression {SPACE} SEMICOLON {SPACE};
 
+stringStatement = STRING SPACE+ WORD {SPACE} EGAL {SPACE} stringExpression {SPACE} SEMICOLON {SPACE};
+
 setVarStatement = WORD  {SPACE} EGAL {SPACE} setVarValue SEMICOLON {SPACE};
 
 conditonStatement = LEFT_PAREN {SPACE} conditionExpr RIGHT_PAREN ;
@@ -93,17 +104,20 @@ booleanExpressionRest = EGAL {SPACE} expression
 setVarValue = 	expression {SPACE}
 				|	stringValue {SPACE} ;
 					
-direValue = stringValue {SPACE}
-			| atom {SPACE};
+direValue = stringExpression {SPACE};
 					
-stringValue = APOSTROPHE {SPACE} sentence APOSTROPHE {SPACE} ;
-					
-sentence = (atom {SPACE})+;				
+stringValue = APOSTROPHE stringCharacter+ APOSTROPHE {SPACE}
+			| QUOTE stringCharacter+ QUOTE {SPACE} ;			
 					
 expression = term {SPACE} [expressionRest];
 
+stringExpression = stringValue {SPACE} [stringExpressionRest]
+				| WORD {SPACE} [stringExpressionRest];
+
 expressionRest = "+" {SPACE} expression
                | "-" {SPACE} expression ;
+			   
+stringExpressionRest = "+" {SPACE} stringExpression;
 
 term = factor {SPACE} [termRest] ;
 
@@ -116,3 +130,26 @@ factor = atom
 atom = [SUB] NUMBER
      | WORD ;
 
+stringCharacter = WORD
+				| NUMBER
+				| SPACE
+				| specialChar ;
+				
+specialChar = DOT
+			| EXCLAMATION
+			| QUESTION_MARK
+			| COLON
+			| COMMA
+			| SUB
+			| ADD
+			| MUL
+			| DIV
+			| LEFT_PAREN
+			| RIGHT_PAREN
+			| LEFT_BRACE
+			| RIGHT_BRACE
+			| BACKSLASH_APOSTROPHE
+			| SEMICOLON
+			| EGAL
+			| BIGGER
+			| SMALLER ;

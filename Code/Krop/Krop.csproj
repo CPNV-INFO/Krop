@@ -76,10 +76,12 @@
     </Compile>
     <Compile Include="Krohonde\Game.cs" />
     <Compile Include="KropExecutionTree\Instruction\InstructionIf.cs" />
+    <Compile Include="KropExecutionTree\Instruction\InstructionString.cs" />
     <Compile Include="KropExecutionTree\Instruction\InstructionWhile.cs" />
     <Compile Include="KropExecutionTree\Interface\IVariable.cs" />
     <Compile Include="KropExecutionTree\AbstractClass\Variable.cs" />
     <Compile Include="KropExecutionTree\Variable\IntVar.cs" />
+    <Compile Include="KropExecutionTree\Variable\StringVar.cs" />
     <Compile Include="KropGrammaticaParser\KropAnalyzer.cs" />
     <Compile Include="KropGrammaticaParser\KropConstants.cs" />
     <Compile Include="KropGrammaticaParser\KropParser.cs" />
@@ -104,6 +106,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <None Include="app.manifest" />
+    <None Include="ClassDiagram1.cd" />
     <None Include="KropExecutionTree_ClassDiagram.cd" />
     <None Include="OpenTK.dll.config" />
     <None Include="packages.config" />

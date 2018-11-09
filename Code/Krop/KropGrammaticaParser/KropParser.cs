@@ -30,8 +30,7 @@ namespace Krop.KropGrammaticaParser {
          * identity constants.</summary>
          */
         private enum SynteticPatterns {
-            SUBPRODUCTION_1 = 3001,
-            SUBPRODUCTION_2 = 3002
+            SUBPRODUCTION_1 = 3001
         }
 
         /**
@@ -103,6 +102,10 @@ namespace Krop.KropGrammaticaParser {
                                             "declarationStatement");
             alt = new ProductionPatternAlternative();
             alt.AddProduction((int) KropConstants.INT_STATEMENT, 1, 1);
+            alt.AddToken((int) KropConstants.SPACE, 0, -1);
+            pattern.AddAlternative(alt);
+            alt = new ProductionPatternAlternative();
+            alt.AddProduction((int) KropConstants.STRING_STATEMENT, 1, 1);
             alt.AddToken((int) KropConstants.SPACE, 0, -1);
             pattern.AddAlternative(alt);
             AddPattern(pattern);
@@ -215,6 +218,22 @@ namespace Krop.KropGrammaticaParser {
             pattern.AddAlternative(alt);
             AddPattern(pattern);
 
+            pattern = new ProductionPattern((int) KropConstants.STRING_STATEMENT,
+                                            "stringStatement");
+            alt = new ProductionPatternAlternative();
+            alt.AddToken((int) KropConstants.STRING, 1, 1);
+            alt.AddToken((int) KropConstants.SPACE, 1, -1);
+            alt.AddToken((int) KropConstants.WORD, 1, 1);
+            alt.AddToken((int) KropConstants.SPACE, 0, -1);
+            alt.AddToken((int) KropConstants.EGAL, 1, 1);
+            alt.AddToken((int) KropConstants.SPACE, 0, -1);
+            alt.AddProduction((int) KropConstants.STRING_EXPRESSION, 1, 1);
+            alt.AddToken((int) KropConstants.SPACE, 0, -1);
+            alt.AddToken((int) KropConstants.SEMICOLON, 1, 1);
+            alt.AddToken((int) KropConstants.SPACE, 0, -1);
+            pattern.AddAlternative(alt);
+            AddPattern(pattern);
+
             pattern = new ProductionPattern((int) KropConstants.SET_VAR_STATEMENT,
                                             "setVarStatement");
             alt = new ProductionPatternAlternative();
@@ -309,11 +328,7 @@ namespace Krop.KropGrammaticaParser {
             pattern = new ProductionPattern((int) KropConstants.DIRE_VALUE,
                                             "direValue");
             alt = new ProductionPatternAlternative();
-            alt.AddProduction((int) KropConstants.STRING_VALUE, 1, 1);
-            alt.AddToken((int) KropConstants.SPACE, 0, -1);
-            pattern.AddAlternative(alt);
-            alt = new ProductionPatternAlternative();
-            alt.AddProduction((int) KropConstants.ATOM, 1, 1);
+            alt.AddProduction((int) KropConstants.STRING_EXPRESSION, 1, 1);
             alt.AddToken((int) KropConstants.SPACE, 0, -1);
             pattern.AddAlternative(alt);
             AddPattern(pattern);
@@ -322,17 +337,15 @@ namespace Krop.KropGrammaticaParser {
                                             "stringValue");
             alt = new ProductionPatternAlternative();
             alt.AddToken((int) KropConstants.APOSTROPHE, 1, 1);
-            alt.AddToken((int) KropConstants.SPACE, 0, -1);
-            alt.AddProduction((int) KropConstants.SENTENCE, 1, 1);
+            alt.AddProduction((int) KropConstants.STRING_CHARACTER, 1, -1);
             alt.AddToken((int) KropConstants.APOSTROPHE, 1, 1);
             alt.AddToken((int) KropConstants.SPACE, 0, -1);
             pattern.AddAlternative(alt);
-            AddPattern(pattern);
-
-            pattern = new ProductionPattern((int) KropConstants.SENTENCE,
-                                            "sentence");
             alt = new ProductionPatternAlternative();
-            alt.AddProduction((int) SynteticPatterns.SUBPRODUCTION_2, 1, -1);
+            alt.AddToken((int) KropConstants.QUOTE, 1, 1);
+            alt.AddProduction((int) KropConstants.STRING_CHARACTER, 1, -1);
+            alt.AddToken((int) KropConstants.QUOTE, 1, 1);
+            alt.AddToken((int) KropConstants.SPACE, 0, -1);
             pattern.AddAlternative(alt);
             AddPattern(pattern);
 
@@ -342,6 +355,20 @@ namespace Krop.KropGrammaticaParser {
             alt.AddProduction((int) KropConstants.TERM, 1, 1);
             alt.AddToken((int) KropConstants.SPACE, 0, -1);
             alt.AddProduction((int) KropConstants.EXPRESSION_REST, 0, 1);
+            pattern.AddAlternative(alt);
+            AddPattern(pattern);
+
+            pattern = new ProductionPattern((int) KropConstants.STRING_EXPRESSION,
+                                            "stringExpression");
+            alt = new ProductionPatternAlternative();
+            alt.AddProduction((int) KropConstants.STRING_VALUE, 1, 1);
+            alt.AddToken((int) KropConstants.SPACE, 0, -1);
+            alt.AddProduction((int) KropConstants.STRING_EXPRESSION_REST, 0, 1);
+            pattern.AddAlternative(alt);
+            alt = new ProductionPatternAlternative();
+            alt.AddToken((int) KropConstants.WORD, 1, 1);
+            alt.AddToken((int) KropConstants.SPACE, 0, -1);
+            alt.AddProduction((int) KropConstants.STRING_EXPRESSION_REST, 0, 1);
             pattern.AddAlternative(alt);
             AddPattern(pattern);
 
@@ -356,6 +383,15 @@ namespace Krop.KropGrammaticaParser {
             alt.AddToken((int) KropConstants.SUB, 1, 1);
             alt.AddToken((int) KropConstants.SPACE, 0, -1);
             alt.AddProduction((int) KropConstants.EXPRESSION, 1, 1);
+            pattern.AddAlternative(alt);
+            AddPattern(pattern);
+
+            pattern = new ProductionPattern((int) KropConstants.STRING_EXPRESSION_REST,
+                                            "stringExpressionRest");
+            alt = new ProductionPatternAlternative();
+            alt.AddToken((int) KropConstants.ADD, 1, 1);
+            alt.AddToken((int) KropConstants.SPACE, 0, -1);
+            alt.AddProduction((int) KropConstants.STRING_EXPRESSION, 1, 1);
             pattern.AddAlternative(alt);
             AddPattern(pattern);
 
@@ -405,13 +441,80 @@ namespace Krop.KropGrammaticaParser {
             alt = new ProductionPatternAlternative();
             alt.AddToken((int) KropConstants.WORD, 1, 1);
             pattern.AddAlternative(alt);
-            alt = new ProductionPatternAlternative();
-            alt.AddToken((int)KropConstants.BACKSLASH_APOSTROPHE, 1, 1);
-            pattern.AddAlternative(alt);
-            alt = new ProductionPatternAlternative();
-            alt.AddToken((int)KropConstants.SPECIAL_CHAR, 1, 1);
-            pattern.AddAlternative(alt);
+            AddPattern(pattern);
 
+            pattern = new ProductionPattern((int) KropConstants.STRING_CHARACTER,
+                                            "stringCharacter");
+            alt = new ProductionPatternAlternative();
+            alt.AddToken((int) KropConstants.WORD, 1, 1);
+            pattern.AddAlternative(alt);
+            alt = new ProductionPatternAlternative();
+            alt.AddToken((int) KropConstants.NUMBER, 1, 1);
+            pattern.AddAlternative(alt);
+            alt = new ProductionPatternAlternative();
+            alt.AddToken((int) KropConstants.SPACE, 1, 1);
+            pattern.AddAlternative(alt);
+            alt = new ProductionPatternAlternative();
+            alt.AddProduction((int) KropConstants.SPECIAL_CHAR, 1, 1);
+            pattern.AddAlternative(alt);
+            AddPattern(pattern);
+
+            pattern = new ProductionPattern((int) KropConstants.SPECIAL_CHAR,
+                                            "specialChar");
+            alt = new ProductionPatternAlternative();
+            alt.AddToken((int) KropConstants.DOT, 1, 1);
+            pattern.AddAlternative(alt);
+            alt = new ProductionPatternAlternative();
+            alt.AddToken((int) KropConstants.EXCLAMATION, 1, 1);
+            pattern.AddAlternative(alt);
+            alt = new ProductionPatternAlternative();
+            alt.AddToken((int) KropConstants.QUESTION_MARK, 1, 1);
+            pattern.AddAlternative(alt);
+            alt = new ProductionPatternAlternative();
+            alt.AddToken((int) KropConstants.COLON, 1, 1);
+            pattern.AddAlternative(alt);
+            alt = new ProductionPatternAlternative();
+            alt.AddToken((int) KropConstants.COMMA, 1, 1);
+            pattern.AddAlternative(alt);
+            alt = new ProductionPatternAlternative();
+            alt.AddToken((int) KropConstants.SUB, 1, 1);
+            pattern.AddAlternative(alt);
+            alt = new ProductionPatternAlternative();
+            alt.AddToken((int) KropConstants.ADD, 1, 1);
+            pattern.AddAlternative(alt);
+            alt = new ProductionPatternAlternative();
+            alt.AddToken((int) KropConstants.MUL, 1, 1);
+            pattern.AddAlternative(alt);
+            alt = new ProductionPatternAlternative();
+            alt.AddToken((int) KropConstants.DIV, 1, 1);
+            pattern.AddAlternative(alt);
+            alt = new ProductionPatternAlternative();
+            alt.AddToken((int) KropConstants.LEFT_PAREN, 1, 1);
+            pattern.AddAlternative(alt);
+            alt = new ProductionPatternAlternative();
+            alt.AddToken((int) KropConstants.RIGHT_PAREN, 1, 1);
+            pattern.AddAlternative(alt);
+            alt = new ProductionPatternAlternative();
+            alt.AddToken((int) KropConstants.LEFT_BRACE, 1, 1);
+            pattern.AddAlternative(alt);
+            alt = new ProductionPatternAlternative();
+            alt.AddToken((int) KropConstants.RIGHT_BRACE, 1, 1);
+            pattern.AddAlternative(alt);
+            alt = new ProductionPatternAlternative();
+            alt.AddToken((int) KropConstants.BACKSLASH_APOSTROPHE, 1, 1);
+            pattern.AddAlternative(alt);
+            alt = new ProductionPatternAlternative();
+            alt.AddToken((int) KropConstants.SEMICOLON, 1, 1);
+            pattern.AddAlternative(alt);
+            alt = new ProductionPatternAlternative();
+            alt.AddToken((int) KropConstants.EGAL, 1, 1);
+            pattern.AddAlternative(alt);
+            alt = new ProductionPatternAlternative();
+            alt.AddToken((int) KropConstants.BIGGER, 1, 1);
+            pattern.AddAlternative(alt);
+            alt = new ProductionPatternAlternative();
+            alt.AddToken((int) KropConstants.SMALLER, 1, 1);
+            pattern.AddAlternative(alt);
             AddPattern(pattern);
 
             pattern = new ProductionPattern((int) SynteticPatterns.SUBPRODUCTION_1,
@@ -419,15 +522,6 @@ namespace Krop.KropGrammaticaParser {
             pattern.Synthetic = true;
             alt = new ProductionPatternAlternative();
             alt.AddToken((int) KropConstants.NOT, 1, 1);
-            alt.AddToken((int) KropConstants.SPACE, 0, -1);
-            pattern.AddAlternative(alt);
-            AddPattern(pattern);
-
-            pattern = new ProductionPattern((int) SynteticPatterns.SUBPRODUCTION_2,
-                                            "Subproduction2");
-            pattern.Synthetic = true;
-            alt = new ProductionPatternAlternative();
-            alt.AddProduction((int) KropConstants.ATOM, 1, 1);
             alt.AddToken((int) KropConstants.SPACE, 0, -1);
             pattern.AddAlternative(alt);
             AddPattern(pattern);
