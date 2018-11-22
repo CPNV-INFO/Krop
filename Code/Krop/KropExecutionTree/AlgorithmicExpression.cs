@@ -65,7 +65,7 @@ namespace Krop.KropExecutionTree
                         break;
                     case (int)KropConstants.WORD:
                         Token token = (Token)_nodeExpression.GetChildAt(i);
-                        value += Subprogram.GetVar(token.GetImage(), _parentSubprogram).ToString();
+                        value += _parentSubprogram.GetVar(token.GetImage(), _parentSubprogram).ToString();
                         break;
                     case (int)KropConstants.STRING_EXPRESSION_REST:
                         value += CalculStringExpressionRest(_nodeExpression.GetChildAt(i), _parentSubprogram);

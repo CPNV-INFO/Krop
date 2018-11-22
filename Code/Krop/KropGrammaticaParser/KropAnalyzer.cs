@@ -61,6 +61,12 @@ namespace Krop.KropGrammaticaParser {
             case (int) KropConstants.STRING:
                 EnterString((Token) node);
                 break;
+            case (int) KropConstants.AND:
+                EnterAnd((Token) node);
+                break;
+            case (int) KropConstants.OR:
+                EnterOr((Token) node);
+                break;
             case (int) KropConstants.CONDITION:
                 EnterCondition((Token) node);
                 break;
@@ -175,6 +181,9 @@ namespace Krop.KropGrammaticaParser {
             case (int) KropConstants.CONDITON_STATEMENT:
                 EnterConditonStatement((Production) node);
                 break;
+            case (int) KropConstants.CONDITION_REST:
+                EnterConditionRest((Production) node);
+                break;
             case (int) KropConstants.CONDITION_EXPR:
                 EnterConditionExpr((Production) node);
                 break;
@@ -226,6 +235,9 @@ namespace Krop.KropGrammaticaParser {
             case (int) KropConstants.SPECIAL_CHAR:
                 EnterSpecialChar((Production) node);
                 break;
+            case (int) KropConstants.LOGICAL_OPERATOR:
+                EnterLogicalOperator((Production) node);
+                break;
             }
         }
 
@@ -260,6 +272,10 @@ namespace Krop.KropGrammaticaParser {
                 return ExitInt((Token) node);
             case (int) KropConstants.STRING:
                 return ExitString((Token) node);
+            case (int) KropConstants.AND:
+                return ExitAnd((Token) node);
+            case (int) KropConstants.OR:
+                return ExitOr((Token) node);
             case (int) KropConstants.CONDITION:
                 return ExitCondition((Token) node);
             case (int) KropConstants.INSTRUCTION:
@@ -336,6 +352,8 @@ namespace Krop.KropGrammaticaParser {
                 return ExitSetVarStatement((Production) node);
             case (int) KropConstants.CONDITON_STATEMENT:
                 return ExitConditonStatement((Production) node);
+            case (int) KropConstants.CONDITION_REST:
+                return ExitConditionRest((Production) node);
             case (int) KropConstants.CONDITION_EXPR:
                 return ExitConditionExpr((Production) node);
             case (int) KropConstants.CONDITION_PARAMETER:
@@ -370,6 +388,8 @@ namespace Krop.KropGrammaticaParser {
                 return ExitStringCharacter((Production) node);
             case (int) KropConstants.SPECIAL_CHAR:
                 return ExitSpecialChar((Production) node);
+            case (int) KropConstants.LOGICAL_OPERATOR:
+                return ExitLogicalOperator((Production) node);
             }
             return node;
         }
@@ -425,6 +445,9 @@ namespace Krop.KropGrammaticaParser {
             case (int) KropConstants.CONDITON_STATEMENT:
                 ChildConditonStatement(node, child);
                 break;
+            case (int) KropConstants.CONDITION_REST:
+                ChildConditionRest(node, child);
+                break;
             case (int) KropConstants.CONDITION_EXPR:
                 ChildConditionExpr(node, child);
                 break;
@@ -475,6 +498,9 @@ namespace Krop.KropGrammaticaParser {
                 break;
             case (int) KropConstants.SPECIAL_CHAR:
                 ChildSpecialChar(node, child);
+                break;
+            case (int) KropConstants.LOGICAL_OPERATOR:
+                ChildLogicalOperator(node, child);
                 break;
             }
         }
@@ -710,6 +736,58 @@ namespace Krop.KropGrammaticaParser {
          * discovered errors</exception>
          */
         public virtual Node ExitString(Token node) {
+            return node;
+        }
+
+        /**
+         * <summary>Called when entering a parse tree node.</summary>
+         *
+         * <param name='node'>the node being entered</param>
+         *
+         * <exception cref='ParseException'>if the node analysis
+         * discovered errors</exception>
+         */
+        public virtual void EnterAnd(Token node) {
+        }
+
+        /**
+         * <summary>Called when exiting a parse tree node.</summary>
+         *
+         * <param name='node'>the node being exited</param>
+         *
+         * <returns>the node to add to the parse tree, or
+         *          null if no parse tree should be created</returns>
+         *
+         * <exception cref='ParseException'>if the node analysis
+         * discovered errors</exception>
+         */
+        public virtual Node ExitAnd(Token node) {
+            return node;
+        }
+
+        /**
+         * <summary>Called when entering a parse tree node.</summary>
+         *
+         * <param name='node'>the node being entered</param>
+         *
+         * <exception cref='ParseException'>if the node analysis
+         * discovered errors</exception>
+         */
+        public virtual void EnterOr(Token node) {
+        }
+
+        /**
+         * <summary>Called when exiting a parse tree node.</summary>
+         *
+         * <param name='node'>the node being exited</param>
+         *
+         * <returns>the node to add to the parse tree, or
+         *          null if no parse tree should be created</returns>
+         *
+         * <exception cref='ParseException'>if the node analysis
+         * discovered errors</exception>
+         */
+        public virtual Node ExitOr(Token node) {
             return node;
         }
 
@@ -1891,6 +1969,46 @@ namespace Krop.KropGrammaticaParser {
          * <exception cref='ParseException'>if the node analysis
          * discovered errors</exception>
          */
+        public virtual void EnterConditionRest(Production node) {
+        }
+
+        /**
+         * <summary>Called when exiting a parse tree node.</summary>
+         *
+         * <param name='node'>the node being exited</param>
+         *
+         * <returns>the node to add to the parse tree, or
+         *          null if no parse tree should be created</returns>
+         *
+         * <exception cref='ParseException'>if the node analysis
+         * discovered errors</exception>
+         */
+        public virtual Node ExitConditionRest(Production node) {
+            return node;
+        }
+
+        /**
+         * <summary>Called when adding a child to a parse tree
+         * node.</summary>
+         *
+         * <param name='node'>the parent node</param>
+         * <param name='child'>the child node, or null</param>
+         *
+         * <exception cref='ParseException'>if the node analysis
+         * discovered errors</exception>
+         */
+        public virtual void ChildConditionRest(Production node, Node child) {
+            node.AddChild(child);
+        }
+
+        /**
+         * <summary>Called when entering a parse tree node.</summary>
+         *
+         * <param name='node'>the node being entered</param>
+         *
+         * <exception cref='ParseException'>if the node analysis
+         * discovered errors</exception>
+         */
         public virtual void EnterConditionExpr(Production node) {
         }
 
@@ -2560,6 +2678,46 @@ namespace Krop.KropGrammaticaParser {
          * discovered errors</exception>
          */
         public virtual void ChildSpecialChar(Production node, Node child) {
+            node.AddChild(child);
+        }
+
+        /**
+         * <summary>Called when entering a parse tree node.</summary>
+         *
+         * <param name='node'>the node being entered</param>
+         *
+         * <exception cref='ParseException'>if the node analysis
+         * discovered errors</exception>
+         */
+        public virtual void EnterLogicalOperator(Production node) {
+        }
+
+        /**
+         * <summary>Called when exiting a parse tree node.</summary>
+         *
+         * <param name='node'>the node being exited</param>
+         *
+         * <returns>the node to add to the parse tree, or
+         *          null if no parse tree should be created</returns>
+         *
+         * <exception cref='ParseException'>if the node analysis
+         * discovered errors</exception>
+         */
+        public virtual Node ExitLogicalOperator(Production node) {
+            return node;
+        }
+
+        /**
+         * <summary>Called when adding a child to a parse tree
+         * node.</summary>
+         *
+         * <param name='node'>the parent node</param>
+         * <param name='child'>the child node, or null</param>
+         *
+         * <exception cref='ParseException'>if the node analysis
+         * discovered errors</exception>
+         */
+        public virtual void ChildLogicalOperator(Production node, Node child) {
             node.AddChild(child);
         }
     }

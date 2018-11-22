@@ -32,6 +32,8 @@ TRUE						 = "TRUE"
 FALSE						 = "FALSE"
 INT							 = "INT"
 STRING 						 = "STRING"
+AND							 = "AND"
+OR							 = "OR"
 CONDITION					 = <<SurUnePheromone|ObstacleEnFace|ObstacleADroite|ObstacleAGauche>>
 INSTRUCTION					 = <<PoserPheromone|PrendrePheromone|Avancer|TournerADroite|TournerAGauche>>
 EGAL 						 = "="
@@ -61,12 +63,13 @@ QUOTE						 = <<">>
 
 %productions%
 
-program = {SPACE} {declarationStatement}  statement+ ;
+program = {SPACE} statement+ ;
 
 declarationStatement = intStatement {SPACE}
 					   | stringStatement {SPACE} ;
 
-statement = 	instructionStatement {SPACE} 
+statement = 	declarationStatement {SPACE}
+			| 	instructionStatement {SPACE} 
 			| 	ifElseStatement {SPACE} 
 			| 	whileStatement {SPACE}
 			|	direStatement {SPACE}
@@ -88,7 +91,8 @@ stringStatement = STRING SPACE+ WORD {SPACE} EGAL {SPACE} stringExpression {SPAC
 
 setVarStatement = WORD  {SPACE} EGAL {SPACE} setVarValue SEMICOLON {SPACE};
 
-conditonStatement = LEFT_PAREN {SPACE} conditionExpr RIGHT_PAREN ;
+conditonStatement = LEFT_PAREN {SPACE} conditionExpr {SPACE} {conditionRest} RIGHT_PAREN ;
+conditionRest = logicalOperator SPACE+ conditionExpr ;
 conditionExpr = [NOT {SPACE}]  conditionParameter;
 conditionParameter =  CONDITION {SPACE} 
 					| TRUE {SPACE} 
@@ -153,3 +157,6 @@ specialChar = DOT
 			| EGAL
 			| BIGGER
 			| SMALLER ;
+			
+logicalOperator = AND
+				| OR ;

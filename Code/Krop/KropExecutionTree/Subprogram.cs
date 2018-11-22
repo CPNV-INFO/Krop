@@ -55,7 +55,7 @@ namespace Krop.KropExecutionTree
         {
             for (int i = 0; i < _nodeProgram.GetChildCount(); i++)
             {
-                if (_nodeProgram.GetChildAt(i).GetId() == (int)KropConstants.STATEMENT || _nodeProgram.GetChildAt(i).GetId() == (int)KropConstants.DECLARATION_STATEMENT)
+                if (_nodeProgram.GetChildAt(i).GetId() == (int)KropConstants.STATEMENT)
                 {
                     Node nodeStatement = _nodeProgram.GetChildAt(i);
 
@@ -63,6 +63,20 @@ namespace Krop.KropExecutionTree
                     {
                         switch (nodeStatement.GetChildAt(y).GetId())
                         {
+                            case (int)KropConstants.DECLARATION_STATEMENT:
+                                Node nodeDeclaration = nodeStatement.GetChildAt(y);
+
+                                switch (nodeDeclaration.GetChildAt(0).GetId())
+                                {
+                                    case (int)KropConstants.INT_STATEMENT:
+                                        this.AddInstruction(new InstructionInt(nodeDeclaration.GetChildAt(0), this));
+                                        break;
+                                    case (int)KropConstants.STRING_STATEMENT:
+                                        this.AddInstruction(new InstructionString(nodeDeclaration.GetChildAt(0), this));
+                                        break;
+                                }
+
+                                break;
                             case (int)KropConstants.INSTRUCTION_STATEMENT:
                                 this.AddInstruction(new Command((Token)nodeStatement.GetChildAt(y).GetChildAt(0)));
                                 break;
@@ -74,13 +88,7 @@ namespace Krop.KropExecutionTree
                                 break;
                             case (int)KropConstants.DIRE_STATEMENT:
                                 this.AddInstruction(new InstructionDire(nodeStatement.GetChildAt(y), this));
-                                break;
-                            case (int)KropConstants.INT_STATEMENT:
-                                this.AddInstruction(new InstructionInt(nodeStatement.GetChildAt(y), this));
-                                break;
-                            case (int)KropConstants.STRING_STATEMENT:
-                                this.AddInstruction(new InstructionString(nodeStatement.GetChildAt(y), this));
-                                break;
+                                break;                    
                             case (int)KropConstants.SET_VAR_STATEMENT:
                                 this.AddInstruction(new InstructionSetVar(nodeStatement.GetChildAt(y), this));
                                 break;
@@ -113,9 +121,12 @@ namespace Krop.KropExecutionTree
         /// </summary>
         /// <param name="_nodeConditionStatement">Node containing the Condition</param>
         /// <returns></returns>
-        public static Measurable<Boolean> SetCond(Node _nodeConditionStatement, Subprogram _parentSubprogram)
+        public static Dictionary<Measurable<Boolean>, string> SetCond(Node _nodeConditionStatement, Subprogram _parentSubprogram)
         {
             bool isNot = false;
+            Token token;
+
+            Dictionary<Measurable<Boolean>, string> condList = new Dictionary<Measurable<bool>, string>();
 
             for (int i = 0; i < _nodeConditionStatement.GetChildCount(); i++)
             {
@@ -132,24 +143,74 @@ namespace Krop.KropExecutionTree
                                 switch (_nodeConditionStatement.GetChildAt(i).GetChildAt(y).GetChildAt(0).GetId())
                                 {
                                     case (int)KropConstants.CONDITION:
-                                        Token token = (Token)_nodeConditionStatement.GetChildAt(i).GetChildAt(y).GetChildAt(0);
-                                        return new BooleanFunction(token.GetImage(), isNot);
+                                        token = (Token)_nodeConditionStatement.GetChildAt(i).GetChildAt(y).GetChildAt(0);
+                                        condList.Add(new BooleanFunction(token.GetImage(), isNot), "");
+                                        break;
                                     case (int)KropConstants.TRUE:
-                                        return new BooleanVar(true, isNot);
+                                        condList.Add(new BooleanVar(true, isNot), "");
+                                        break;
                                     case (int)KropConstants.FALSE:
-                                        return new BooleanVar(false, isNot);
+                                        condList.Add(new BooleanVar(false, isNot), "");
+                                        break;
                                     case (int)KropConstants.BOOLEAN_EXPRESSION:
-                                        return new BooleanExpression(_nodeConditionStatement.GetChildAt(i).GetChildAt(y).GetChildAt(0), _parentSubprogram, isNot);
+                                        condList.Add(new BooleanExpression(_nodeConditionStatement.GetChildAt(i).GetChildAt(y).GetChildAt(0), _parentSubprogram, isNot), "");        
+                                        break;
                                 }
                                 break;
                             default:
                                 break;
                         }
                     }
+                }else if (_nodeConditionStatement.GetChildAt(i).GetId() == (int)KropConstants.CONDITION_REST)
+                {
+                    string logicalOperator = "";
+
+                    for (int y = 0; y < _nodeConditionStatement.GetChildAt(i).GetChildCount(); y++)
+                    {
+                        switch (_nodeConditionStatement.GetChildAt(i).GetChildAt(y).GetId())
+                        {
+                            case (int)KropConstants.LOGICAL_OPERATOR:
+                                token = (Token)_nodeConditionStatement.GetChildAt(i).GetChildAt(y).GetChildAt(0);
+                                logicalOperator = token.GetImage();
+                                break;
+                            case (int)KropConstants.CONDITION_EXPR:
+
+                                if (_nodeConditionStatement.GetChildAt(i).GetChildAt(y).GetChildAt(0).GetId() == (int)KropConstants.NOT)
+                                    isNot = true;
+
+                                for (int j = 0; j < _nodeConditionStatement.GetChildAt(i).GetChildAt(y).GetChildCount(); j++)
+                                {
+                                    switch (_nodeConditionStatement.GetChildAt(i).GetChildAt(y).GetChildAt(j).GetId())
+                                    {
+                                        case (int)KropConstants.CONDITION_PARAMETER:
+                                            switch (_nodeConditionStatement.GetChildAt(i).GetChildAt(y).GetChildAt(j).GetChildAt(0).GetId())
+                                            {
+                                                case (int)KropConstants.CONDITION:
+                                                    token = (Token)_nodeConditionStatement.GetChildAt(i).GetChildAt(y).GetChildAt(j).GetChildAt(0);
+                                                    condList.Add(new BooleanFunction(token.GetImage(), isNot), logicalOperator);
+                                                    break;
+                                                case (int)KropConstants.TRUE:
+                                                    condList.Add(new BooleanVar(true, isNot), logicalOperator);
+                                                    break;
+                                                case (int)KropConstants.FALSE:
+                                                    condList.Add(new BooleanVar(false, isNot), logicalOperator);
+                                                    break;
+                                                case (int)KropConstants.BOOLEAN_EXPRESSION:
+                                                    condList.Add(new BooleanExpression(_nodeConditionStatement.GetChildAt(i).GetChildAt(y).GetChildAt(j).GetChildAt(0), _parentSubprogram, isNot), logicalOperator);
+                                                    break;
+                                            }
+                                            break;
+                                        default:
+                                            break;
+                                    }
+                                }
+                                break;
+                        }
+                    }
                 }
             }
 
-            return new BooleanVar(false, false);
+            return condList;
         }
 
         /// <summary>
@@ -262,7 +323,7 @@ namespace Krop.KropExecutionTree
         /// <param name="_varName">Variable Name</param>
         /// <param name="_parentSubprogram">Parent Subprogram</param>
         /// <returns>Variable</returns>
-        public static IVariable GetVar(string _varName, Subprogram _parentSubprogram)
+        public IVariable GetVar(string _varName, Subprogram _parentSubprogram)
         {
             foreach (IVariable var in _parentSubprogram.ListVar)
             {
@@ -279,6 +340,36 @@ namespace Krop.KropExecutionTree
             else
             {
                 return null;
+            }
+        }
+
+        /// <summary>
+        /// Modify a variable value
+        /// </summary>
+        /// <typeparam name="T">Type of the value</typeparam>
+        /// <param name="_varName">Variable name</param>
+        /// <param name="_value">The new value for the variable</param>
+        /// <param name="_parentSubprogram">Parent Subprogram</param>
+        public void SetVar<T>(string _varName, T _value, Subprogram _parentSubprogram)
+        {
+            foreach (IVariable var in _parentSubprogram.ListVar)
+            {
+                if (var.GetName() == _varName)
+                {
+                    if (var is IntVar intVar)
+                    {
+                        intVar.SetValue(int.Parse(_value.ToString()));
+                    }
+                    else if (var is StringVar stringVar)
+                    {
+                        stringVar.SetValue(_value.ToString());
+                    }
+                }
+            }
+
+            if (_parentSubprogram.ParentSubprogram != null)
+            {
+                SetVar<T>(_varName, _value, _parentSubprogram.ParentSubprogram);
             }
         }
     }

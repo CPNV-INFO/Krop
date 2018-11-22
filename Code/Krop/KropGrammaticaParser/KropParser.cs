@@ -93,7 +93,6 @@ namespace Krop.KropGrammaticaParser {
                                             "program");
             alt = new ProductionPatternAlternative();
             alt.AddToken((int) KropConstants.SPACE, 0, -1);
-            alt.AddProduction((int) KropConstants.DECLARATION_STATEMENT, 0, -1);
             alt.AddProduction((int) KropConstants.STATEMENT, 1, -1);
             pattern.AddAlternative(alt);
             AddPattern(pattern);
@@ -112,6 +111,10 @@ namespace Krop.KropGrammaticaParser {
 
             pattern = new ProductionPattern((int) KropConstants.STATEMENT,
                                             "statement");
+            alt = new ProductionPatternAlternative();
+            alt.AddProduction((int) KropConstants.DECLARATION_STATEMENT, 1, 1);
+            alt.AddToken((int) KropConstants.SPACE, 0, -1);
+            pattern.AddAlternative(alt);
             alt = new ProductionPatternAlternative();
             alt.AddProduction((int) KropConstants.INSTRUCTION_STATEMENT, 1, 1);
             alt.AddToken((int) KropConstants.SPACE, 0, -1);
@@ -253,7 +256,18 @@ namespace Krop.KropGrammaticaParser {
             alt.AddToken((int) KropConstants.LEFT_PAREN, 1, 1);
             alt.AddToken((int) KropConstants.SPACE, 0, -1);
             alt.AddProduction((int) KropConstants.CONDITION_EXPR, 1, 1);
+            alt.AddToken((int) KropConstants.SPACE, 0, -1);
+            alt.AddProduction((int) KropConstants.CONDITION_REST, 0, -1);
             alt.AddToken((int) KropConstants.RIGHT_PAREN, 1, 1);
+            pattern.AddAlternative(alt);
+            AddPattern(pattern);
+
+            pattern = new ProductionPattern((int) KropConstants.CONDITION_REST,
+                                            "conditionRest");
+            alt = new ProductionPatternAlternative();
+            alt.AddProduction((int) KropConstants.LOGICAL_OPERATOR, 1, 1);
+            alt.AddToken((int) KropConstants.SPACE, 1, -1);
+            alt.AddProduction((int) KropConstants.CONDITION_EXPR, 1, 1);
             pattern.AddAlternative(alt);
             AddPattern(pattern);
 
@@ -514,6 +528,16 @@ namespace Krop.KropGrammaticaParser {
             pattern.AddAlternative(alt);
             alt = new ProductionPatternAlternative();
             alt.AddToken((int) KropConstants.SMALLER, 1, 1);
+            pattern.AddAlternative(alt);
+            AddPattern(pattern);
+
+            pattern = new ProductionPattern((int) KropConstants.LOGICAL_OPERATOR,
+                                            "logicalOperator");
+            alt = new ProductionPatternAlternative();
+            alt.AddToken((int) KropConstants.AND, 1, 1);
+            pattern.AddAlternative(alt);
+            alt = new ProductionPatternAlternative();
+            alt.AddToken((int) KropConstants.OR, 1, 1);
             pattern.AddAlternative(alt);
             AddPattern(pattern);
 

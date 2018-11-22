@@ -11,6 +11,7 @@ using Krop.KropGrammaticaParser;
 using Krop.KropExecutionTree.Interface;
 using Krop.KropExecutionTree.AbstractClass;
 using Krop.KropExecutionTree.Variable;
+using System;
 
 namespace Krop.KropExecutionTree.Instruction
 {
@@ -35,7 +36,7 @@ namespace Krop.KropExecutionTree.Instruction
                 {
                     case (int)KropConstants.WORD:
                         Token token = (Token)_nodeIntStatement.GetChildAt(i);
-                        if((Var = Subprogram.GetVar(token.GetImage(), _parentSubprogram)) == null)
+                        if((Var = ParentSubprogram.GetVar(token.GetImage(), _parentSubprogram)) == null)
                         {
                             Error = true;
                             ErrorMsg = "Variable " + token.GetImage() + " n'existe pas.";
@@ -54,10 +55,12 @@ namespace Krop.KropExecutionTree.Instruction
                 if (!Error)
                 {
                     if (Var is IntVar intVar)
-                    { 
-
-                        intVar.SetValue(AlgorithmicExpression.CalculExpression(SetVarValue.GetChildAt(0), ParentSubprogram));
-                        
+                    {
+                        ParentSubprogram.SetVar(Var.GetName(), AlgorithmicExpression.CalculExpression(SetVarValue.GetChildAt(0), ParentSubprogram), ParentSubprogram);
+                    }
+                    else if (Var is StringVar stringVarVar)
+                    {
+                        ParentSubprogram.SetVar(Var.GetName(), AlgorithmicExpression.GetStringValue(SetVarValue.GetChildAt(0), ParentSubprogram), ParentSubprogram);
                     }
                     return true;
                 }   

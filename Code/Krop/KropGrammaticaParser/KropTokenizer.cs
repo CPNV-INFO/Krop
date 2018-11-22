@@ -104,6 +104,18 @@ namespace Krop.KropGrammaticaParser {
                                        "STRING");
             AddPattern(pattern);
 
+            pattern = new TokenPattern((int) KropConstants.AND,
+                                       "AND",
+                                       TokenPattern.PatternType.STRING,
+                                       "AND");
+            AddPattern(pattern);
+
+            pattern = new TokenPattern((int) KropConstants.OR,
+                                       "OR",
+                                       TokenPattern.PatternType.STRING,
+                                       "OR");
+            AddPattern(pattern);
+
             pattern = new TokenPattern((int) KropConstants.CONDITION,
                                        "CONDITION",
                                        TokenPattern.PatternType.REGEXP,
