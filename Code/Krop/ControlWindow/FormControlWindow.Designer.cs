@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormControlWindow));
             this.btnPlay = new System.Windows.Forms.Button();
             this.cbxProgram = new System.Windows.Forms.ComboBox();
@@ -50,8 +51,31 @@
             this.lblRuleNewProgram = new System.Windows.Forms.Label();
             this.lblNewProgramName = new System.Windows.Forms.Label();
             this.txtCode = new System.Windows.Forms.RichTextBox();
+            this.cmdAddIf = new System.Windows.Forms.Button();
+            this.cmdAddIfElse = new System.Windows.Forms.Button();
+            this.cmdAddWhile = new System.Windows.Forms.Button();
+            this.cmdAddElse = new System.Windows.Forms.Button();
+            this.cmdAddInt = new System.Windows.Forms.Button();
+            this.cmdAddString = new System.Windows.Forms.Button();
+            this.grpInstr = new System.Windows.Forms.GroupBox();
+            this.grpVar = new System.Windows.Forms.GroupBox();
+            this.grpQuickActions = new System.Windows.Forms.GroupBox();
+            this.buttonToolTip = new System.Windows.Forms.ToolTip(this.components);
+            this.grpFunctions = new System.Windows.Forms.GroupBox();
+            this.cmdAddAvancer = new System.Windows.Forms.Button();
+            this.cmdAddDire = new System.Windows.Forms.Button();
+            this.cmdAddTournerADroite = new System.Windows.Forms.Button();
+            this.cmdAddTournerAGauche = new System.Windows.Forms.Button();
+            this.cmdAddPoserPheromone = new System.Windows.Forms.Button();
+            this.cmdAddPrendrePheromone = new System.Windows.Forms.Button();
+            this.cmdAddSurUnePheromone = new System.Windows.Forms.Button();
+            this.cmdAddObstacleEnFace = new System.Windows.Forms.Button();
             this.gbxControlForm.SuspendLayout();
             this.gbxNewProgramForm.SuspendLayout();
+            this.grpInstr.SuspendLayout();
+            this.grpVar.SuspendLayout();
+            this.grpQuickActions.SuspendLayout();
+            this.grpFunctions.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnPlay
@@ -107,6 +131,7 @@
             // gbxControlForm
             // 
             this.gbxControlForm.AccessibleName = "gbxControlForm";
+            this.gbxControlForm.Controls.Add(this.grpQuickActions);
             this.gbxControlForm.Controls.Add(this.txtCode);
             this.gbxControlForm.Controls.Add(this.lblKropVersion);
             this.gbxControlForm.Controls.Add(this.lblProgram);
@@ -121,7 +146,7 @@
             this.gbxControlForm.Controls.Add(this.btnPause);
             this.gbxControlForm.Location = new System.Drawing.Point(-5, -29);
             this.gbxControlForm.Name = "gbxControlForm";
-            this.gbxControlForm.Size = new System.Drawing.Size(600, 700);
+            this.gbxControlForm.Size = new System.Drawing.Size(700, 700);
             this.gbxControlForm.TabIndex = 8;
             this.gbxControlForm.TabStop = false;
             // 
@@ -299,6 +324,7 @@
             // 
             // txtCode
             // 
+            this.txtCode.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtCode.Location = new System.Drawing.Point(19, 86);
             this.txtCode.Name = "txtCode";
             this.txtCode.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.Vertical;
@@ -307,12 +333,205 @@
             this.txtCode.Text = "";
             this.txtCode.TextChanged += new System.EventHandler(this.txtCode_TextChanged);
             // 
+            // cmdAddIf
+            // 
+            this.cmdAddIf.Location = new System.Drawing.Point(6, 24);
+            this.cmdAddIf.Name = "cmdAddIf";
+            this.cmdAddIf.Size = new System.Drawing.Size(91, 23);
+            this.cmdAddIf.TabIndex = 20;
+            this.cmdAddIf.Text = "if";
+            this.cmdAddIf.UseVisualStyleBackColor = true;
+            this.cmdAddIf.Click += new System.EventHandler(this.addIfButton_Click);
+            // 
+            // cmdAddIfElse
+            // 
+            this.cmdAddIfElse.Location = new System.Drawing.Point(6, 53);
+            this.cmdAddIfElse.Name = "cmdAddIfElse";
+            this.cmdAddIfElse.Size = new System.Drawing.Size(91, 23);
+            this.cmdAddIfElse.TabIndex = 21;
+            this.cmdAddIfElse.Text = "if... else";
+            this.cmdAddIfElse.UseVisualStyleBackColor = true;
+            this.cmdAddIfElse.Click += new System.EventHandler(this.cmdAddIfElse_Click);
+            // 
+            // cmdAddWhile
+            // 
+            this.cmdAddWhile.Location = new System.Drawing.Point(6, 112);
+            this.cmdAddWhile.Name = "cmdAddWhile";
+            this.cmdAddWhile.Size = new System.Drawing.Size(91, 23);
+            this.cmdAddWhile.TabIndex = 22;
+            this.cmdAddWhile.Text = "while";
+            this.cmdAddWhile.UseVisualStyleBackColor = true;
+            this.cmdAddWhile.Click += new System.EventHandler(this.cmdAddWhile_Click);
+            // 
+            // cmdAddElse
+            // 
+            this.cmdAddElse.Location = new System.Drawing.Point(6, 82);
+            this.cmdAddElse.Name = "cmdAddElse";
+            this.cmdAddElse.Size = new System.Drawing.Size(91, 23);
+            this.cmdAddElse.TabIndex = 23;
+            this.cmdAddElse.Text = "else";
+            this.cmdAddElse.UseVisualStyleBackColor = true;
+            this.cmdAddElse.Click += new System.EventHandler(this.cmdAddElse_Click);
+            // 
+            // cmdAddInt
+            // 
+            this.cmdAddInt.Location = new System.Drawing.Point(6, 19);
+            this.cmdAddInt.Name = "cmdAddInt";
+            this.cmdAddInt.Size = new System.Drawing.Size(91, 23);
+            this.cmdAddInt.TabIndex = 24;
+            this.cmdAddInt.Text = "int";
+            this.cmdAddInt.UseVisualStyleBackColor = true;
+            this.cmdAddInt.Click += new System.EventHandler(this.cmdAddInt_Click);
+            // 
+            // cmdAddString
+            // 
+            this.cmdAddString.Location = new System.Drawing.Point(6, 48);
+            this.cmdAddString.Name = "cmdAddString";
+            this.cmdAddString.Size = new System.Drawing.Size(91, 23);
+            this.cmdAddString.TabIndex = 25;
+            this.cmdAddString.Text = "string";
+            this.cmdAddString.UseVisualStyleBackColor = true;
+            this.cmdAddString.Click += new System.EventHandler(this.cmdAddString_Click);
+            // 
+            // grpInstr
+            // 
+            this.grpInstr.Controls.Add(this.cmdAddElse);
+            this.grpInstr.Controls.Add(this.cmdAddIf);
+            this.grpInstr.Controls.Add(this.cmdAddIfElse);
+            this.grpInstr.Controls.Add(this.cmdAddWhile);
+            this.grpInstr.Location = new System.Drawing.Point(6, 19);
+            this.grpInstr.Name = "grpInstr";
+            this.grpInstr.Size = new System.Drawing.Size(103, 146);
+            this.grpInstr.TabIndex = 27;
+            this.grpInstr.TabStop = false;
+            this.grpInstr.Text = "Instructions";
+            // 
+            // grpVar
+            // 
+            this.grpVar.Controls.Add(this.cmdAddString);
+            this.grpVar.Controls.Add(this.cmdAddInt);
+            this.grpVar.Location = new System.Drawing.Point(6, 175);
+            this.grpVar.Name = "grpVar";
+            this.grpVar.Size = new System.Drawing.Size(103, 80);
+            this.grpVar.TabIndex = 28;
+            this.grpVar.TabStop = false;
+            this.grpVar.Text = "Variables";
+            // 
+            // grpQuickActions
+            // 
+            this.grpQuickActions.Controls.Add(this.grpFunctions);
+            this.grpQuickActions.Controls.Add(this.grpVar);
+            this.grpQuickActions.Controls.Add(this.grpInstr);
+            this.grpQuickActions.Location = new System.Drawing.Point(577, 86);
+            this.grpQuickActions.Name = "grpQuickActions";
+            this.grpQuickActions.Size = new System.Drawing.Size(115, 517);
+            this.grpQuickActions.TabIndex = 29;
+            this.grpQuickActions.TabStop = false;
+            this.grpQuickActions.Text = "Actions rapides";
+            // 
+            // grpFunctions
+            // 
+            this.grpFunctions.Controls.Add(this.cmdAddObstacleEnFace);
+            this.grpFunctions.Controls.Add(this.cmdAddSurUnePheromone);
+            this.grpFunctions.Controls.Add(this.cmdAddPrendrePheromone);
+            this.grpFunctions.Controls.Add(this.cmdAddPoserPheromone);
+            this.grpFunctions.Controls.Add(this.cmdAddTournerAGauche);
+            this.grpFunctions.Controls.Add(this.cmdAddTournerADroite);
+            this.grpFunctions.Controls.Add(this.cmdAddAvancer);
+            this.grpFunctions.Controls.Add(this.cmdAddDire);
+            this.grpFunctions.Location = new System.Drawing.Point(6, 261);
+            this.grpFunctions.Name = "grpFunctions";
+            this.grpFunctions.Size = new System.Drawing.Size(109, 250);
+            this.grpFunctions.TabIndex = 29;
+            this.grpFunctions.TabStop = false;
+            this.grpFunctions.Text = "Fonctions";
+            // 
+            // cmdAddAvancer
+            // 
+            this.cmdAddAvancer.Location = new System.Drawing.Point(3, 48);
+            this.cmdAddAvancer.Name = "cmdAddAvancer";
+            this.cmdAddAvancer.Size = new System.Drawing.Size(97, 23);
+            this.cmdAddAvancer.TabIndex = 25;
+            this.cmdAddAvancer.Text = "avancer";
+            this.cmdAddAvancer.UseVisualStyleBackColor = true;
+            this.cmdAddAvancer.Click += new System.EventHandler(this.cmdAddAvancer_Click);
+            // 
+            // cmdAddDire
+            // 
+            this.cmdAddDire.Location = new System.Drawing.Point(6, 19);
+            this.cmdAddDire.Name = "cmdAddDire";
+            this.cmdAddDire.Size = new System.Drawing.Size(91, 23);
+            this.cmdAddDire.TabIndex = 24;
+            this.cmdAddDire.Text = "dire";
+            this.cmdAddDire.UseVisualStyleBackColor = true;
+            this.cmdAddDire.Click += new System.EventHandler(this.cmdAddDire_Click);
+            // 
+            // cmdAddTournerADroite
+            // 
+            this.cmdAddTournerADroite.Location = new System.Drawing.Point(3, 77);
+            this.cmdAddTournerADroite.Name = "cmdAddTournerADroite";
+            this.cmdAddTournerADroite.Size = new System.Drawing.Size(97, 23);
+            this.cmdAddTournerADroite.TabIndex = 26;
+            this.cmdAddTournerADroite.Text = "TournerADroite";
+            this.cmdAddTournerADroite.UseVisualStyleBackColor = true;
+            this.cmdAddTournerADroite.Click += new System.EventHandler(this.cmdAddTournerADroite_Click);
+            // 
+            // cmdAddTournerAGauche
+            // 
+            this.cmdAddTournerAGauche.Location = new System.Drawing.Point(3, 106);
+            this.cmdAddTournerAGauche.Name = "cmdAddTournerAGauche";
+            this.cmdAddTournerAGauche.Size = new System.Drawing.Size(97, 23);
+            this.cmdAddTournerAGauche.TabIndex = 27;
+            this.cmdAddTournerAGauche.Text = "TournerAGauche";
+            this.cmdAddTournerAGauche.UseVisualStyleBackColor = true;
+            this.cmdAddTournerAGauche.Click += new System.EventHandler(this.cmdAddTournerAGauche_Click);
+            // 
+            // cmdAddPoserPheromone
+            // 
+            this.cmdAddPoserPheromone.Location = new System.Drawing.Point(3, 135);
+            this.cmdAddPoserPheromone.Name = "cmdAddPoserPheromone";
+            this.cmdAddPoserPheromone.Size = new System.Drawing.Size(97, 23);
+            this.cmdAddPoserPheromone.TabIndex = 28;
+            this.cmdAddPoserPheromone.Text = "PoserPheromone";
+            this.cmdAddPoserPheromone.UseVisualStyleBackColor = true;
+            this.cmdAddPoserPheromone.Click += new System.EventHandler(this.cmdAddPoserPheromone_Click);
+            // 
+            // cmdAddPrendrePheromone
+            // 
+            this.cmdAddPrendrePheromone.Location = new System.Drawing.Point(0, 162);
+            this.cmdAddPrendrePheromone.Name = "cmdAddPrendrePheromone";
+            this.cmdAddPrendrePheromone.Size = new System.Drawing.Size(106, 23);
+            this.cmdAddPrendrePheromone.TabIndex = 29;
+            this.cmdAddPrendrePheromone.Text = "PrendrePheromone";
+            this.cmdAddPrendrePheromone.UseVisualStyleBackColor = true;
+            this.cmdAddPrendrePheromone.Click += new System.EventHandler(this.cmdAddPrendrePheromone_Click);
+            // 
+            // cmdAddSurUnePheromone
+            // 
+            this.cmdAddSurUnePheromone.Location = new System.Drawing.Point(0, 191);
+            this.cmdAddSurUnePheromone.Name = "cmdAddSurUnePheromone";
+            this.cmdAddSurUnePheromone.Size = new System.Drawing.Size(106, 23);
+            this.cmdAddSurUnePheromone.TabIndex = 30;
+            this.cmdAddSurUnePheromone.Text = "SurUnePheromone";
+            this.cmdAddSurUnePheromone.UseVisualStyleBackColor = true;
+            this.cmdAddSurUnePheromone.Click += new System.EventHandler(this.cmdAddSurUnePheromone_Click);
+            // 
+            // cmdAddObstacleEnFace
+            // 
+            this.cmdAddObstacleEnFace.Location = new System.Drawing.Point(3, 220);
+            this.cmdAddObstacleEnFace.Name = "cmdAddObstacleEnFace";
+            this.cmdAddObstacleEnFace.Size = new System.Drawing.Size(97, 23);
+            this.cmdAddObstacleEnFace.TabIndex = 31;
+            this.cmdAddObstacleEnFace.Text = "ObstacleEnFace";
+            this.cmdAddObstacleEnFace.UseVisualStyleBackColor = true;
+            this.cmdAddObstacleEnFace.Click += new System.EventHandler(this.cmdAddObstacleEnFace_Click);
+            // 
             // FormControlWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
-            this.ClientSize = new System.Drawing.Size(584, 662);
+            this.ClientSize = new System.Drawing.Size(689, 662);
             this.Controls.Add(this.gbxControlForm);
             this.Controls.Add(this.gbxNewProgramForm);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -328,6 +547,10 @@
             this.gbxControlForm.PerformLayout();
             this.gbxNewProgramForm.ResumeLayout(false);
             this.gbxNewProgramForm.PerformLayout();
+            this.grpInstr.ResumeLayout(false);
+            this.grpVar.ResumeLayout(false);
+            this.grpQuickActions.ResumeLayout(false);
+            this.grpFunctions.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -354,6 +577,25 @@
         private System.Windows.Forms.Label lblKropVersion2;
         private System.Windows.Forms.TextBox txtTerminal;
         private System.Windows.Forms.RichTextBox txtCode;
+        private System.Windows.Forms.Button cmdAddIf;
+        private System.Windows.Forms.Button cmdAddIfElse;
+        private System.Windows.Forms.Button cmdAddWhile;
+        private System.Windows.Forms.Button cmdAddElse;
+        private System.Windows.Forms.Button cmdAddInt;
+        private System.Windows.Forms.Button cmdAddString;
+        private System.Windows.Forms.GroupBox grpQuickActions;
+        private System.Windows.Forms.GroupBox grpVar;
+        private System.Windows.Forms.GroupBox grpInstr;
+        private System.Windows.Forms.ToolTip buttonToolTip;
+        private System.Windows.Forms.GroupBox grpFunctions;
+        private System.Windows.Forms.Button cmdAddPrendrePheromone;
+        private System.Windows.Forms.Button cmdAddPoserPheromone;
+        private System.Windows.Forms.Button cmdAddTournerAGauche;
+        private System.Windows.Forms.Button cmdAddTournerADroite;
+        private System.Windows.Forms.Button cmdAddAvancer;
+        private System.Windows.Forms.Button cmdAddDire;
+        private System.Windows.Forms.Button cmdAddObstacleEnFace;
+        private System.Windows.Forms.Button cmdAddSurUnePheromone;
     }
 }
 
