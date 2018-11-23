@@ -65,16 +65,16 @@ QUOTE						 = <<">>
 
 program = {SPACE} statement+ ;
 
-declarationStatement = intStatement {SPACE}
-					   | stringStatement {SPACE} ;
-
 statement = 	declarationStatement {SPACE}
 			| 	instructionStatement {SPACE} 
 			| 	ifElseStatement {SPACE} 
 			| 	whileStatement {SPACE}
 			|	direStatement {SPACE}
-			| 	setVarStatement {SPACE};
+			| 	setVarStatement {SPACE} ;
 			
+declarationStatement = intStatement {SPACE}
+					| stringStatement {SPACE} ;
+					   
 instructionStatement = INSTRUCTION {SPACE} SEMICOLON ;
 			
 ifElseStatement = 	ifStatement {SPACE} [elseStatement] ;
@@ -103,10 +103,10 @@ booleanExpression = expression {SPACE} booleanExpressionRest;
 					
 booleanExpressionRest = EGAL {SPACE} expression
 					| BIGGER {SPACE} expression
-					| SMALLER {SPACE}expression;
+					| SMALLER {SPACE} expression;
 					
-setVarValue = 	expression {SPACE}
-				|	stringValue {SPACE} ;
+setVarValue = expression {SPACE}
+			| stringValue {SPACE} ;
 					
 direValue = stringExpression {SPACE};
 					

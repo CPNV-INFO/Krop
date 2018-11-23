@@ -342,35 +342,5 @@ namespace Krop.KropExecutionTree
                 return null;
             }
         }
-
-        /// <summary>
-        /// Modify a variable value
-        /// </summary>
-        /// <typeparam name="T">Type of the value</typeparam>
-        /// <param name="_varName">Variable name</param>
-        /// <param name="_value">The new value for the variable</param>
-        /// <param name="_parentSubprogram">Parent Subprogram</param>
-        public void SetVar<T>(string _varName, T _value, Subprogram _parentSubprogram)
-        {
-            foreach (IVariable var in _parentSubprogram.ListVar)
-            {
-                if (var.GetName() == _varName)
-                {
-                    if (var is IntVar intVar)
-                    {
-                        intVar.SetValue(int.Parse(_value.ToString()));
-                    }
-                    else if (var is StringVar stringVar)
-                    {
-                        stringVar.SetValue(_value.ToString());
-                    }
-                }
-            }
-
-            if (_parentSubprogram.ParentSubprogram != null)
-            {
-                SetVar<T>(_varName, _value, _parentSubprogram.ParentSubprogram);
-            }
-        }
     }
 }

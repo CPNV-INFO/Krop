@@ -14,6 +14,8 @@ using System.Threading;
 using Krop.Krohonde;
 using Krop.KropGrammaticaParser;
 using Krop.KropExecutionTree;
+using System.Drawing;
+using System.Text.RegularExpressions;
 
 namespace Krop.ControlWindow
 {
@@ -389,6 +391,42 @@ namespace Krop.ControlWindow
             
             Game.EXIT_KROHONDE = true;
             Application.Exit();
+        }
+
+        /// <summary>
+        /// When the text in txtCode has changed
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void txtCode_TextChanged(object sender, EventArgs e)
+        {
+            ChangeWordColor("int", Color.Blue);
+            ChangeWordColor("string", Color.Blue);
+            ChangeWordColor("while", Color.Blue);
+            ChangeWordColor("if", Color.Blue);
+            ChangeWordColor("else", Color.Blue);
+        }
+
+        /// <summary>
+        /// Check for the string and apply the color to it
+        /// </summary>
+        /// <param name="word">Word to color</param>
+        /// <param name="color">Color</param>
+        private void ChangeWordColor(string word, Color color)
+        {
+            if (this.txtCode.Text.Contains(word))
+            {
+                int index = -1;
+                int selectStart = this.txtCode.SelectionStart;
+
+                while ((index = this.txtCode.Text.IndexOf(word, (index + 1))) != -1)
+                {
+                    this.txtCode.Select((index), word.Length);
+                    this.txtCode.SelectionColor = color;
+                    this.txtCode.Select(selectStart, 0);
+                    this.txtCode.SelectionColor = Color.Black;
+                }
+            }
         }
     }
 }

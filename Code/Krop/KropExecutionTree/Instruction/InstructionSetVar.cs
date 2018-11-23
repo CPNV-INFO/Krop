@@ -48,6 +48,7 @@ namespace Krop.KropExecutionTree.Instruction
                 }
             }
         }
+
         public override bool Execute()
         {
             if (CanExecute())
@@ -56,11 +57,11 @@ namespace Krop.KropExecutionTree.Instruction
                 {
                     if (Var is IntVar intVar)
                     {
-                        ParentSubprogram.SetVar(Var.GetName(), AlgorithmicExpression.CalculExpression(SetVarValue.GetChildAt(0), ParentSubprogram), ParentSubprogram);
+                        intVar.SetValue(AlgorithmicExpression.CalculExpression(SetVarValue.GetChildAt(0), ParentSubprogram));
                     }
-                    else if (Var is StringVar stringVarVar)
+                    else if (Var is StringVar stringVar)
                     {
-                        ParentSubprogram.SetVar(Var.GetName(), AlgorithmicExpression.GetStringValue(SetVarValue.GetChildAt(0), ParentSubprogram), ParentSubprogram);
+                        stringVar.SetValue(AlgorithmicExpression.GetStringValue(SetVarValue.GetChildAt(0), ParentSubprogram));
                     }
                     return true;
                 }   
