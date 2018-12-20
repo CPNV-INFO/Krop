@@ -128,6 +128,12 @@ namespace Krop.KropGrammaticaParser {
                                        "PoserPheromone|PrendrePheromone|Avancer|TournerADroite|TournerAGauche");
             AddPattern(pattern);
 
+            pattern = new TokenPattern((int) KropConstants.INPUT,
+                                       "INPUT",
+                                       TokenPattern.PatternType.STRING,
+                                       "INPUT");
+            AddPattern(pattern);
+
             pattern = new TokenPattern((int) KropConstants.EGAL,
                                        "EGAL",
                                        TokenPattern.PatternType.STRING,

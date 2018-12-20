@@ -22,6 +22,7 @@ namespace Krop.KropExecutionTree.Instruction
         bool IsStringValue = false;
         string VarName;
         string Value;
+        bool inputValue = false;
         string ErrorMsg;
         Node stringExpression;
 
@@ -54,6 +55,10 @@ namespace Krop.KropExecutionTree.Instruction
                                     VarName = token.GetImage();
                                 }
                                 break;
+                            case (int)KropConstants.INPUT:
+                                inputValue = true;
+                                IsStringValue = true;
+                                break;
                         }
                     }
                 }
@@ -64,7 +69,10 @@ namespace Krop.KropExecutionTree.Instruction
         {
             if (CanExecute())
             {
-                Value = AlgorithmicExpression.CalculStringExpression(stringExpression, ParentSubprogram);
+                if (inputValue)
+                    Value = Subprogram.PromptInputValue<string>();
+                else
+                    Value = AlgorithmicExpression.CalculStringExpression(stringExpression, ParentSubprogram);
 
                 if (Value != null && IsStringValue == true)
                 {

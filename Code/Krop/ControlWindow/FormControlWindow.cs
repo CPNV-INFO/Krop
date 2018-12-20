@@ -427,6 +427,8 @@ namespace Krop.ControlWindow
             ChangeWordColor("while", Color.Blue);
             ChangeWordColor("if", Color.Blue);
             ChangeWordColor("else", Color.Blue);
+            ChangeWordColor("true", Color.Blue);
+            ChangeWordColor("false", Color.Blue);
 
             ChangeWordColor("SurUnePheromone", Color.Green);
             ChangeWordColor("ObstacleEnFace", Color.Green);

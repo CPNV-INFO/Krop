@@ -15,6 +15,8 @@ using Krop.KropExecutionTree.AbstractClass;
 using Krop.KropExecutionTree.Variable;
 using Krop.KropExecutionTree.Condition;
 using Krop.KropExecutionTree.Instruction;
+using Krop.ControlWindow;
+using System.Windows.Forms;
 
 namespace Krop.KropExecutionTree
 {
@@ -342,5 +344,41 @@ namespace Krop.KropExecutionTree
                 return null;
             }
         }
+
+        /// <summary>
+        /// Prompt a value with the InputBox Form
+        /// </summary>
+        /// <typeparam name="T">Type of the prompted value</typeparam>
+        /// <returns></returns>
+        public static T PromptInputValue<T>()
+        {
+            bool keepPrompt = true;
+            do
+            {
+                Input inputDialog = new Input();
+                inputDialog.lblInput.Text = "Indiquez une valeur de type " + typeof(T).Name;
+
+                if (inputDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                {
+                    try
+                    {
+                        return (T)Convert.ChangeType(inputDialog.txtInput.Text, typeof(T));
+                    }
+                    catch (FormatException ex)
+                    {
+                        MessageBox.Show("Valeur incorrecte, il faut un " + typeof(T).Name, "Erreur de valeur");
+                    }
+                }
+                else
+                {
+                    keepPrompt = false;
+                    return (T)Convert.ChangeType(0, typeof(T));
+                }
+
+            } while (keepPrompt);
+
+            return (T)Convert.ChangeType(0, typeof(T));
+        }
+
     }
 }

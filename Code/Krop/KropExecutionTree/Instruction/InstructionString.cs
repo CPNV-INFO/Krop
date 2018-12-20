@@ -18,13 +18,17 @@ namespace Krop.KropExecutionTree.Instruction
     /// </summary>
     class InstructionString : Executable
     {
+        Subprogram ParentSubprogram;
         string VarValue;
         string VarName;
         bool Error = false;
+        bool inputValue = false;
         string ErrorMsg;
 
         public InstructionString(Node _nodeIntStatement, Subprogram _parentSubprogram)
         {
+            this.ParentSubprogram = _parentSubprogram;
+
             for (int i = 0; i < _nodeIntStatement.GetChildCount(); i++)
             {
                 switch (_nodeIntStatement.GetChildAt(i).GetId())
@@ -33,17 +37,34 @@ namespace Krop.KropExecutionTree.Instruction
                         Token token = (Token)_nodeIntStatement.GetChildAt(i);
                         VarName = token.GetImage();
                         break;
-                    case (int)KropConstants.STRING_EXPRESSION:
-                        VarValue = AlgorithmicExpression.CalculStringExpression(_nodeIntStatement.GetChildAt(i), _parentSubprogram);
-                        break;
 
+                    case (int)KropConstants.STRING_VAR_VALUE:
+
+                        switch (_nodeIntStatement.GetChildAt(i).GetChildAt(0).GetId())
+                        {
+                            case (int)KropConstants.STRING_EXPRESSION:
+                                VarValue = AlgorithmicExpression.CalculStringExpression(_nodeIntStatement.GetChildAt(i).GetChildAt(0), _parentSubprogram);
+                                break;
+                            case (int)KropConstants.INPUT:
+                                inputValue = true;
+                                break;
+                        }
+                        break;
                 }
             }
 
-            if (!Subprogram.VarExists(VarName, _parentSubprogram))
+            
+        }
+
+        public override bool Execute()
+        {
+            if (!Subprogram.VarExists(VarName, ParentSubprogram))
             {
+                if (inputValue)
+                    VarValue = Subprogram.PromptInputValue<string>();
+
                 if (VarValue != null)
-                    _parentSubprogram.ListVar.Add(new StringVar(VarName, VarValue));
+                    ParentSubprogram.ListVar.Add(new StringVar(VarName, VarValue));
                 else
                 {
                     Error = true;
@@ -55,12 +76,12 @@ namespace Krop.KropExecutionTree.Instruction
                 Error = true;
                 ErrorMsg = "Variable " + VarName + " existe déjà.";
             }
-        }
 
-        public override bool Execute()
-        {
             if (!Error)
+            {
+               
                 return true;
+            }
             else
             {
                 FormControlWindow.TerminalWriteLine("VarError : " + ErrorMsg);

@@ -1,4 +1,11 @@
-﻿using Krop.KropExecutionTree.AbstractClass;
+﻿// ----------------------------------------------------------------------------
+//
+// Definition of the StringVar class
+// Date: November 2018
+// Author: Dorian Niclass
+//
+// ----------------------------------------------------------------------------
+using Krop.KropExecutionTree.AbstractClass;
 using System;
 using System.Collections.Generic;
 using System.Linq;

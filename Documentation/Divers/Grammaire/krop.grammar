@@ -36,6 +36,7 @@ AND							 = "AND"
 OR							 = "OR"
 CONDITION					 = <<SurUnePheromone|ObstacleEnFace|ObstacleADroite|ObstacleAGauche>>
 INSTRUCTION					 = <<PoserPheromone|PrendrePheromone|Avancer|TournerADroite|TournerAGauche>>
+INPUT						 = "INPUT"
 EGAL 						 = "="
 BIGGER						 = ">"
 SMALLER						 = "<"
@@ -85,9 +86,9 @@ whileStatement = WHILE {SPACE} conditonStatement {SPACE} LEFT_BRACE program RIGH
 
 direStatement = DIRE {SPACE} direValue SEMICOLON {SPACE};
 
-intStatement = INT SPACE+ WORD {SPACE} EGAL {SPACE} expression {SPACE} SEMICOLON {SPACE};
+intStatement = INT SPACE+ WORD {SPACE} EGAL {SPACE} IntVarValue {SPACE} SEMICOLON {SPACE};
 
-stringStatement = STRING SPACE+ WORD {SPACE} EGAL {SPACE} stringExpression {SPACE} SEMICOLON {SPACE};
+stringStatement = STRING SPACE+ WORD {SPACE} EGAL {SPACE} StringVarValue {SPACE} SEMICOLON {SPACE};
 
 setVarStatement = WORD  {SPACE} EGAL {SPACE} setVarValue SEMICOLON {SPACE};
 
@@ -105,10 +106,18 @@ booleanExpressionRest = EGAL {SPACE} expression
 					| BIGGER {SPACE} expression
 					| SMALLER {SPACE} expression;
 					
-setVarValue = expression {SPACE}
-			| stringValue {SPACE} ;
-					
-direValue = stringExpression {SPACE};
+IntVarValue = expression
+			| INPUT ;
+		
+StringVarValue = stringExpression
+			| INPUT ;
+			
+setVarValue = INPUT
+			| expression {SPACE}
+			| stringValue {SPACE};
+			
+direValue = stringExpression {SPACE}
+			| INPUT;
 					
 stringValue = APOSTROPHE stringCharacter+ APOSTROPHE {SPACE}
 			| QUOTE stringCharacter+ QUOTE {SPACE} ;			
