@@ -9,6 +9,7 @@ using System.Drawing;
 using OpenTK;
 using OpenTK.Graphics.OpenGL;
 using Krop.ControlWindow;
+using Krop.KropExecutionTree;
 
 namespace Krop.Krohonde
 {
@@ -44,6 +45,7 @@ namespace Krop.Krohonde
         //Ant settings
         public bool IsWalking;
         private Color Color;
+        private float Speed;
 
         /// <summary>
         /// Return Ant Direction
@@ -81,6 +83,8 @@ namespace Krop.Krohonde
             NewCoord = Point.Empty;
             PositionGoTo = new Vector2();
             IsWalking = false;
+
+            this.Speed = 1;
         }
 
         /// <summary>
@@ -166,35 +170,61 @@ namespace Krop.Krohonde
             {
                 if (Position != PositionGoTo)
                 {
+                    float moveDistance = this.Speed;
+
                     switch (Direction)
                     {
                         case Direction.North:
-                            Position.Y--;
+                            if (Position.Y - moveDistance < PositionGoTo.Y) Position.Y = PositionGoTo.Y;
+                            else Position.Y -= moveDistance;
+
                             break;
                         case Direction.NorthEast:
-                            Position.Y--;
-                            Position.X++;
+                            if (Position.Y - moveDistance < PositionGoTo.Y) Position.Y = PositionGoTo.Y;
+                            else Position.Y -= moveDistance;
+
+                            if (Position.X + moveDistance > PositionGoTo.X) Position.X = PositionGoTo.X;
+                            else Position.X += moveDistance;
+
                             break;
                         case Direction.East:
-                            Position.X++;
+                            if (Position.X + moveDistance > PositionGoTo.X) Position.X = PositionGoTo.X;
+                            else Position.X += moveDistance;
+
                             break;
                         case Direction.SouthEast:
-                            Position.Y++;
-                            Position.X++;
+                            if (Position.Y + moveDistance > PositionGoTo.Y) Position.Y = PositionGoTo.Y;
+                            else Position.Y += moveDistance;
+
+                            if (Position.X + moveDistance > PositionGoTo.X) Position.X = PositionGoTo.X;
+                            else Position.X += moveDistance;
+
                             break;
                         case Direction.South:
-                            Position.Y++;
+                            if (Position.Y + moveDistance > PositionGoTo.Y) Position.Y = PositionGoTo.Y;
+                            else Position.Y += moveDistance;
+
                             break;
                         case Direction.SouthWest:
-                            Position.Y++;
-                            Position.X--;
+                            if (Position.Y + moveDistance > PositionGoTo.Y) Position.Y = PositionGoTo.Y;
+                            else Position.Y += moveDistance;
+
+                            if (Position.X - moveDistance < PositionGoTo.X) Position.X = PositionGoTo.X;
+                            else Position.X -= moveDistance;
+
                             break;
                         case Direction.West:
-                            Position.X--;
+                            if (Position.X - moveDistance < PositionGoTo.X) Position.X = PositionGoTo.X;
+                            else Position.X -= moveDistance;
+
                             break;
                         case Direction.NorthWest:
-                            Position.Y--;
-                            Position.X--;
+                            if (Position.Y - moveDistance < PositionGoTo.Y) Position.Y = PositionGoTo.Y;
+                            else Position.Y -= moveDistance;
+
+                            if (Position.X - moveDistance < PositionGoTo.X) Position.X = PositionGoTo.X;
+                            else Position.X -= moveDistance;
+
                             break;
                     }
                 }
@@ -357,6 +387,11 @@ namespace Krop.Krohonde
             if (IS_TURNING_LEFT) TurningLeft();
             UpdatePosition();
             UpdateSprite();
+        }
+
+        public void SetSpeed(float speed)
+        {
+            this.Speed = speed;
         }
     }
 }

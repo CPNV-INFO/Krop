@@ -48,6 +48,8 @@ namespace Krop.KropExecutionTree.Variable
         public override void SetValue(int? _value)
         {
             Value = _value;
+
+            base.SetValue(_value);
         }
 
         /// <summary>

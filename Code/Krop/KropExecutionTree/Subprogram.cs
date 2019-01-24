@@ -17,6 +17,7 @@ using Krop.KropExecutionTree.Condition;
 using Krop.KropExecutionTree.Instruction;
 using Krop.ControlWindow;
 using System.Windows.Forms;
+using Krop.Krohonde;
 
 namespace Krop.KropExecutionTree
 {
@@ -36,6 +37,10 @@ namespace Krop.KropExecutionTree
             Prg = new List<Executable>();
             ListVar = new List<IVariable>();
             ParentSubprogram = null;
+
+            this.ListVar.Add(new IntVar("antspeed", 1));
+
+            bool b = VarExists("AntSpeed", this);
 
             BuildExecutionTree(_nodeProgram);
         }
@@ -378,6 +383,17 @@ namespace Krop.KropExecutionTree
             } while (keepPrompt);
 
             return (T)Convert.ChangeType(0, typeof(T));
+        }
+
+        public static void VarValueChanged(IVariable var)
+        {
+            switch (var.GetName())
+            {
+                case "antspeed":
+                    IntVar intVar = (IntVar)var;
+                    Game.ANT.SetSpeed((float)intVar.GetValue());
+                    break;
+            }
         }
 
     }

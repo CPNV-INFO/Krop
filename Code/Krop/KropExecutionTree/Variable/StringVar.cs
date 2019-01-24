@@ -38,6 +38,7 @@ namespace Krop.KropExecutionTree.Variable
         public override void SetValue(string _value)
         {
             Value = _value;
+            base.SetValue(_value);
         }
 
         public override string ToString()

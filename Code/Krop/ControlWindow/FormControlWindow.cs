@@ -16,6 +16,7 @@ using Krop.KropGrammaticaParser;
 using Krop.KropExecutionTree;
 using System.Drawing;
 using System.Text.RegularExpressions;
+using System.Runtime.InteropServices;
 
 namespace Krop.ControlWindow
 {
@@ -33,6 +34,18 @@ namespace Krop.ControlWindow
 
         private string CodePath = Directory.GetParent(Application.ExecutablePath).ToString() + @"\Code\"; //Path to directory \Code
         private string GardenPath = Directory.GetParent(Application.ExecutablePath).ToString() + @"\Garden\"; //Path to directory \Garden
+
+        //Used for setting the tab width of the code TextBox
+        [DllImport("user32.dll", CharSet = CharSet.Auto)]
+        static extern IntPtr SendMessage(IntPtr hWnd, uint Msg, Int32 wParam, int[] lParam);
+        [DllImport("user32.dll", CharSet = CharSet.Auto)]
+        static extern IntPtr SendMessage(IntPtr hWnd, uint Msg, Int32 wParam, ref Point lParam);
+
+        private const uint EM_SETTABSTOPS = 0xCB;
+        const int WM_USER = 0x400;
+        private const int EM_GETSCROLLPOS = WM_USER + 221;
+        const int EM_SETSCROLLPOS = WM_USER + 222;
+
 
         /// <summary>
         /// Initialize Control Window
@@ -86,7 +99,8 @@ namespace Krop.ControlWindow
                     Console.WriteLine("Adding " + fileInfo.Name + " to garden list");
                 }
             }
-
+            
+            //Set the tooltips for the differents buttons
             this.buttonToolTip.SetToolTip(this.cmdAddIf, "Ajoute une condition if (si)");
             this.buttonToolTip.SetToolTip(this.cmdAddIfElse, "Ajoute une condition if... else (si... sinon)");
             this.buttonToolTip.SetToolTip(this.cmdAddElse, "Ajoute un else (sinon), utilisé après un if");
@@ -102,6 +116,9 @@ namespace Krop.ControlWindow
             this.buttonToolTip.SetToolTip(this.cmdAddPrendrePheromone, "Ajoute la fonction PrendrePheromone, qui permet de prendre une pheromone, s'il y en a une à l'emplacement de la fourmis");
             this.buttonToolTip.SetToolTip(this.cmdAddSurUnePheromone, "Ajoute la fonction SurUnePheromone, qui permet de savoir si la fourmis est actuellement sur une pheromone.");
             this.buttonToolTip.SetToolTip(this.cmdAddObstacleEnFace, "Ajoute la fonction ObstacleEnFace, qui permet de savoir si la fourmis est face à un mur.");
+
+            //Change the tab width of the code TextBox
+            SendMessage(txtCode.Handle, EM_SETTABSTOPS, 1, new int[] { 12 });
         }
 
         /// <summary>
@@ -440,6 +457,7 @@ namespace Krop.ControlWindow
             ChangeWordColor("TournerADroite", Color.Green);
             ChangeWordColor("TournerAGauche", Color.Green);
             ChangeWordColor("dire", Color.Green);
+            ChangeWordColor("input", Color.Green);
         }
 
         /// <summary>
@@ -469,7 +487,7 @@ namespace Krop.ControlWindow
         {
             AddTextAtCursor("if(condition){\n    \n}");
         }
-
+        
         private void cmdAddIfElse_Click(object sender, EventArgs e)
         {
             AddTextAtCursor("if(condition){\n    \n}else{\n    \n}");
