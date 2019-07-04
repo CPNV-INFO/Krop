@@ -11,6 +11,9 @@ using Krop.KropGrammaticaParser;
 using Krop.KropExecutionTree.Interface;
 using Krop.KropExecutionTree.AbstractClass;
 using Krop.KropExecutionTree.Variable;
+using System;
+using System.Windows.Forms;
+using System.Linq;
 
 namespace Krop.KropExecutionTree.Instruction
 {
@@ -22,6 +25,8 @@ namespace Krop.KropExecutionTree.Instruction
         Subprogram ParentSubprogram;
         IVariable Var;
         Node SetVarValue;
+        Token varToken;
+        bool inputValue = false;
         bool Error = false;
         string ErrorMsg;
 
@@ -34,30 +39,51 @@ namespace Krop.KropExecutionTree.Instruction
                 switch (_nodeIntStatement.GetChildAt(i).GetId())
                 {
                     case (int)KropConstants.WORD:
-                        Token token = (Token)_nodeIntStatement.GetChildAt(i);
-                        if((Var = Subprogram.GetVar(token.GetImage(), _parentSubprogram)) == null)
-                        {
-                            Error = true;
-                            ErrorMsg = "Variable " + token.GetImage() + " n'existe pas.";
-                        }
+                        varToken = (Token)_nodeIntStatement.GetChildAt(i);                  
                         break;
                     case (int)KropConstants.SET_VAR_VALUE:
-                        SetVarValue = _nodeIntStatement.GetChildAt(i);
+                        if (_nodeIntStatement.GetChildAt(i).GetChildAt(0).GetId() == (int)KropConstants.INPUT)
+                            inputValue = true;       
+                        else
+                            SetVarValue = _nodeIntStatement.GetChildAt(i);
                         break;
                 }
             }
         }
+
         public override bool Execute()
         {
             if (CanExecute())
             {
+                if ((Var = ParentSubprogram.GetVar(varToken.GetImage(), ParentSubprogram)) == null)
+                {
+                    Error = true;
+                    ErrorMsg = "Variable " + varToken.GetImage() + " n'existe pas.";
+                }
+
                 if (!Error)
                 {
-                    if (Var is IntVar intVar)
-                    { 
+                    if (Var is IntVar intVar) {
 
-                        intVar.SetValue(AlgorithmicExpression.CalculExpression(SetVarValue.GetChildAt(0), ParentSubprogram));
-                        
+                        if (inputValue)
+                        {
+                            intVar.SetValue(Subprogram.PromptInputValue<int>());
+                        }
+                        else
+                        {
+                            intVar.SetValue(AlgorithmicExpression.CalculExpression(SetVarValue.GetChildAt(0), ParentSubprogram));
+                        }
+                    }
+                    else if (Var is StringVar stringVar)
+                    {
+                        if (inputValue)
+                        {
+                            stringVar.SetValue(Subprogram.PromptInputValue<string>());
+                        }
+                        else
+                        {
+                            stringVar.SetValue(AlgorithmicExpression.CalculStringExpression(SetVarValue.GetChildAt(0), ParentSubprogram));
+                        }
                     }
                     return true;
                 }   

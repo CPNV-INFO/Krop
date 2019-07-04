@@ -19,7 +19,7 @@ namespace Krop.KropExecutionTree.Instruction
     /// </summary>
     class Command : Executable
     {
-        private String Name;
+        private string Name;
 
         public Command(Token _tokenInstruction)
         {
@@ -29,7 +29,7 @@ namespace Krop.KropExecutionTree.Instruction
         {
             if (CanExecute())
             {
-                Console.WriteLine(String.Format("Command: {0}", Name));
+                Console.WriteLine(string.Format("Command: {0}", Name));
 
                 FormControlWindow.PENDING_INSTRUCTION = true;
 

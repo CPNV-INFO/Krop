@@ -98,6 +98,24 @@ namespace Krop.KropGrammaticaParser {
                                        "INT");
             AddPattern(pattern);
 
+            pattern = new TokenPattern((int) KropConstants.STRING,
+                                       "STRING",
+                                       TokenPattern.PatternType.STRING,
+                                       "STRING");
+            AddPattern(pattern);
+
+            pattern = new TokenPattern((int) KropConstants.AND,
+                                       "AND",
+                                       TokenPattern.PatternType.STRING,
+                                       "AND");
+            AddPattern(pattern);
+
+            pattern = new TokenPattern((int) KropConstants.OR,
+                                       "OR",
+                                       TokenPattern.PatternType.STRING,
+                                       "OR");
+            AddPattern(pattern);
+
             pattern = new TokenPattern((int) KropConstants.CONDITION,
                                        "CONDITION",
                                        TokenPattern.PatternType.REGEXP,
@@ -108,6 +126,12 @@ namespace Krop.KropGrammaticaParser {
                                        "INSTRUCTION",
                                        TokenPattern.PatternType.REGEXP,
                                        "PoserPheromone|PrendrePheromone|Avancer|TournerADroite|TournerAGauche");
+            AddPattern(pattern);
+
+            pattern = new TokenPattern((int) KropConstants.INPUT,
+                                       "INPUT",
+                                       TokenPattern.PatternType.STRING,
+                                       "INPUT");
             AddPattern(pattern);
 
             pattern = new TokenPattern((int) KropConstants.EGAL,
@@ -194,6 +218,36 @@ namespace Krop.KropGrammaticaParser {
                                        " ");
             AddPattern(pattern);
 
+            pattern = new TokenPattern((int) KropConstants.EXCLAMATION,
+                                       "EXCLAMATION",
+                                       TokenPattern.PatternType.STRING,
+                                       "!");
+            AddPattern(pattern);
+
+            pattern = new TokenPattern((int) KropConstants.QUESTION_MARK,
+                                       "QUESTION_MARK",
+                                       TokenPattern.PatternType.STRING,
+                                       "?");
+            AddPattern(pattern);
+
+            pattern = new TokenPattern((int) KropConstants.COLON,
+                                       "COLON",
+                                       TokenPattern.PatternType.STRING,
+                                       ":");
+            AddPattern(pattern);
+
+            pattern = new TokenPattern((int) KropConstants.COMMA,
+                                       "COMMA",
+                                       TokenPattern.PatternType.STRING,
+                                       ",");
+            AddPattern(pattern);
+
+            pattern = new TokenPattern((int) KropConstants.DOT,
+                                       "DOT",
+                                       TokenPattern.PatternType.STRING,
+                                       ".");
+            AddPattern(pattern);
+
             pattern = new TokenPattern((int) KropConstants.NUMBER,
                                        "NUMBER",
                                        TokenPattern.PatternType.REGEXP,
@@ -203,7 +257,7 @@ namespace Krop.KropGrammaticaParser {
             pattern = new TokenPattern((int) KropConstants.WORD,
                                        "WORD",
                                        TokenPattern.PatternType.REGEXP,
-                                       "[a-y]+");
+                                       "[a-z]+");
             AddPattern(pattern);
 
             pattern = new TokenPattern((int) KropConstants.WHITESPACE,
@@ -211,6 +265,18 @@ namespace Krop.KropGrammaticaParser {
                                        TokenPattern.PatternType.REGEXP,
                                        "[\\t\\n\\r]+");
             pattern.Ignore = true;
+            AddPattern(pattern);
+
+            pattern = new TokenPattern((int) KropConstants.BACKSLASH_APOSTROPHE,
+                                       "BACKSLASH_APOSTROPHE",
+                                       TokenPattern.PatternType.STRING,
+                                       "\\'");
+            AddPattern(pattern);
+
+            pattern = new TokenPattern((int) KropConstants.QUOTE,
+                                       "QUOTE",
+                                       TokenPattern.PatternType.REGEXP,
+                                       "\"");
             AddPattern(pattern);
         }
     }

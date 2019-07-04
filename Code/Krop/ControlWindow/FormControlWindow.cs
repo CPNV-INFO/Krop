@@ -14,6 +14,9 @@ using System.Threading;
 using Krop.Krohonde;
 using Krop.KropGrammaticaParser;
 using Krop.KropExecutionTree;
+using System.Drawing;
+using System.Text.RegularExpressions;
+using System.Runtime.InteropServices;
 
 namespace Krop.ControlWindow
 {
@@ -31,6 +34,18 @@ namespace Krop.ControlWindow
 
         private string CodePath = Directory.GetParent(Application.ExecutablePath).ToString() + @"\Code\"; //Path to directory \Code
         private string GardenPath = Directory.GetParent(Application.ExecutablePath).ToString() + @"\Garden\"; //Path to directory \Garden
+
+        //Used for setting the tab width of the code TextBox
+        [DllImport("user32.dll", CharSet = CharSet.Auto)]
+        static extern IntPtr SendMessage(IntPtr hWnd, uint Msg, Int32 wParam, int[] lParam);
+        [DllImport("user32.dll", CharSet = CharSet.Auto)]
+        static extern IntPtr SendMessage(IntPtr hWnd, uint Msg, Int32 wParam, ref Point lParam);
+
+        private const uint EM_SETTABSTOPS = 0xCB;
+        const int WM_USER = 0x400;
+        private const int EM_GETSCROLLPOS = WM_USER + 221;
+        const int EM_SETSCROLLPOS = WM_USER + 222;
+
 
         /// <summary>
         /// Initialize Control Window
@@ -84,6 +99,26 @@ namespace Krop.ControlWindow
                     Console.WriteLine("Adding " + fileInfo.Name + " to garden list");
                 }
             }
+            
+            //Set the tooltips for the differents buttons
+            this.buttonToolTip.SetToolTip(this.cmdAddIf, "Ajoute une condition if (si)");
+            this.buttonToolTip.SetToolTip(this.cmdAddIfElse, "Ajoute une condition if... else (si... sinon)");
+            this.buttonToolTip.SetToolTip(this.cmdAddElse, "Ajoute un else (sinon), utilisé après un if");
+            this.buttonToolTip.SetToolTip(this.cmdAddWhile, "Ajoute une boucle while (tant que)");
+            this.buttonToolTip.SetToolTip(this.cmdAddInt, "Ajoute une déclaration de variable de type int (numérique)");
+            this.buttonToolTip.SetToolTip(this.cmdAddString, "Ajoute une déclaration de variable de type string (chaine de caractères)");
+
+            this.buttonToolTip.SetToolTip(this.cmdAddDire, "Ajoute la fonction dire, qui permet d'écrire dans la console.");
+            this.buttonToolTip.SetToolTip(this.cmdAddAvancer, "Ajoute la fonction avancer, qui permet de faire avancer la fourmis d'une case.");
+            this.buttonToolTip.SetToolTip(this.cmdAddTournerADroite, "Ajoute la fonction TournerADroite, qui permet de faire tourner la fourmis à droite.");
+            this.buttonToolTip.SetToolTip(this.cmdAddTournerAGauche, "Ajoute la fonction TournerAGauche, qui permet de faire tourner la fourmis à gauche.");
+            this.buttonToolTip.SetToolTip(this.cmdAddPoserPheromone, "Ajoute la fonction PoserPheromone, qui permet de poser une pheromone à la position de la fourmis.");
+            this.buttonToolTip.SetToolTip(this.cmdAddPrendrePheromone, "Ajoute la fonction PrendrePheromone, qui permet de prendre une pheromone, s'il y en a une à l'emplacement de la fourmis");
+            this.buttonToolTip.SetToolTip(this.cmdAddSurUnePheromone, "Ajoute la fonction SurUnePheromone, qui permet de savoir si la fourmis est actuellement sur une pheromone.");
+            this.buttonToolTip.SetToolTip(this.cmdAddObstacleEnFace, "Ajoute la fonction ObstacleEnFace, qui permet de savoir si la fourmis est face à un mur.");
+
+            //Change the tab width of the code TextBox
+            SendMessage(txtCode.Handle, EM_SETTABSTOPS, 1, new int[] { 12 });
         }
 
         /// <summary>
@@ -389,6 +424,145 @@ namespace Krop.ControlWindow
             
             Game.EXIT_KROHONDE = true;
             Application.Exit();
+        }
+
+        /// <summary>
+        /// When the text in txtCode has changed
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void txtCode_TextChanged(object sender, EventArgs e)
+        {
+            int selectStart = this.txtCode.SelectionStart;
+
+            this.txtCode.Select(0, this.txtCode.Text.Length);
+            this.txtCode.SelectionColor = Color.Black;
+            this.txtCode.Select(selectStart, 0);
+
+            ChangeWordColor("int", Color.Blue);
+            ChangeWordColor("string", Color.Blue);
+            ChangeWordColor("while", Color.Blue);
+            ChangeWordColor("if", Color.Blue);
+            ChangeWordColor("else", Color.Blue);
+            ChangeWordColor("true", Color.Blue);
+            ChangeWordColor("false", Color.Blue);
+
+            ChangeWordColor("SurUnePheromone", Color.Green);
+            ChangeWordColor("ObstacleEnFace", Color.Green);
+            ChangeWordColor("ObstacleADroite", Color.Green);
+            ChangeWordColor("ObstacleAGauche", Color.Green);
+            ChangeWordColor("PoserPheromone", Color.Green);
+            ChangeWordColor("PrendrePheromone", Color.Green);
+            ChangeWordColor("Avancer", Color.Green);
+            ChangeWordColor("TournerADroite", Color.Green);
+            ChangeWordColor("TournerAGauche", Color.Green);
+            ChangeWordColor("dire", Color.Green);
+            ChangeWordColor("input", Color.Green);
+        }
+
+        /// <summary>
+        /// Check for the string and apply the color to it
+        /// </summary>
+        /// <param name="word">Word to color</param>
+        /// <param name="color">Color</param>
+        private void ChangeWordColor(string word, Color color)
+        {
+            if (this.txtCode.Text.ToLower().Contains(word.ToLower()))
+            {
+                int index = -1;
+                int selectStart = this.txtCode.SelectionStart;
+
+                while ((index = this.txtCode.Text.ToLower().IndexOf(word.ToLower(), (index + 1))) != -1)
+                {
+                    this.txtCode.Select((index), word.Length);
+                    this.txtCode.SelectionColor = color;
+                    this.txtCode.Select(selectStart, 0);
+                    this.txtCode.SelectionColor = Color.Black;
+                }
+            }
+        }
+
+        #region QuickActionsButtonsClick
+        private void addIfButton_Click(object sender, EventArgs e)
+        {
+            AddTextAtCursor("if(condition){\n    \n}");
+        }
+        
+        private void cmdAddIfElse_Click(object sender, EventArgs e)
+        {
+            AddTextAtCursor("if(condition){\n    \n}else{\n    \n}");
+        }
+
+        private void cmdAddWhile_Click(object sender, EventArgs e)
+        {
+            AddTextAtCursor("while(condition){\n    \n}");
+        }
+
+        private void cmdAddElse_Click(object sender, EventArgs e)
+        {
+            AddTextAtCursor("else{\n    \n}");
+        }
+
+        private void cmdAddInt_Click(object sender, EventArgs e)
+        {
+            AddTextAtCursor("int var = 0;\n");
+        }
+
+        private void cmdAddString_Click(object sender, EventArgs e)
+        {
+            AddTextAtCursor("string var = \" \";\n");
+        }
+
+        private void cmdAddDire_Click(object sender, EventArgs e)
+        {
+            AddTextAtCursor("dire \" \";\n");
+        }
+
+        private void cmdAddAvancer_Click(object sender, EventArgs e)
+        {
+            AddTextAtCursor("avancer;\n");
+        }
+
+        private void cmdAddTournerADroite_Click(object sender, EventArgs e)
+        {
+            AddTextAtCursor("TournerADroite;\n");
+        }
+
+        private void cmdAddTournerAGauche_Click(object sender, EventArgs e)
+        {
+            AddTextAtCursor("TournerAGauche;\n");
+        }
+
+        private void cmdAddPoserPheromone_Click(object sender, EventArgs e)
+        {
+            AddTextAtCursor("PoserPheromone;\n");
+        }
+
+        private void cmdAddPrendrePheromone_Click(object sender, EventArgs e)
+        {
+            AddTextAtCursor("PrendrePheromone;\n");
+        }
+
+        private void cmdAddSurUnePheromone_Click(object sender, EventArgs e)
+        {
+            AddTextAtCursor("SurUnePheromone");
+        }
+
+        private void cmdAddObstacleEnFace_Click(object sender, EventArgs e)
+        {
+            AddTextAtCursor("ObstacleEnFace");
+        }
+        #endregion
+
+        /// <summary>
+        /// Add text at the cursor
+        /// </summary>
+        /// <param name="text">Text to add</param>
+        private void AddTextAtCursor(string text)
+        {
+            this.txtCode.SelectionLength = 0;
+            this.txtCode.SelectionColor = Color.Black;
+            this.txtCode.SelectedText = text;
         }
     }
 }

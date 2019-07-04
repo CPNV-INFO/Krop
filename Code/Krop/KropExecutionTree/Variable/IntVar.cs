@@ -48,6 +48,8 @@ namespace Krop.KropExecutionTree.Variable
         public override void SetValue(int? _value)
         {
             Value = _value;
+
+            base.SetValue(_value);
         }
 
         /// <summary>
@@ -56,7 +58,7 @@ namespace Krop.KropExecutionTree.Variable
         /// <returns>String variable</returns>
         public override string ToString()
         {
-            return "Variable " + Name + " = " + Value.ToString();
+            return Value.ToString();
         }
     }
 }

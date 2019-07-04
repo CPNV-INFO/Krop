@@ -18,7 +18,10 @@ namespace Krop.KropExecutionTree.AbstractClass
     {
         public abstract string GetName();
 
-        public abstract void SetValue(T _value);
+        public virtual void SetValue(T _value)
+        {
+            Subprogram.VarValueChanged(this);
+        }
 
         public abstract T GetValue();
 

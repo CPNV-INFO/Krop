@@ -31,8 +31,12 @@ NOT							 = "NOT"
 TRUE						 = "TRUE"
 FALSE						 = "FALSE"
 INT							 = "INT"
+STRING 						 = "STRING"
+AND							 = "AND"
+OR							 = "OR"
 CONDITION					 = <<SurUnePheromone|ObstacleEnFace|ObstacleADroite|ObstacleAGauche>>
 INSTRUCTION					 = <<PoserPheromone|PrendrePheromone|Avancer|TournerADroite|TournerAGauche>>
+INPUT						 = "INPUT"
 EGAL 						 = "="
 BIGGER						 = ">"
 SMALLER						 = "<"
@@ -47,22 +51,31 @@ RIGHT_BRACE                  = "}"
 SEMICOLON					 = ";"
 APOSTROPHE					 = "'"
 SPACE 						 = " "
+EXCLAMATION					 = "!"
+QUESTION_MARK				 = "?"
+COLON						 = ":"
+COMMA						 = ","
+DOT							 = "."
 NUMBER                       = <<[0-9]+>>
-WORD 						 = <<[a-y]+>>
+WORD 						 = <<[a-z]+>>
 WHITESPACE    				 = <<[\t\n\r]+>> %ignore%
+BACKSLASH_APOSTROPHE 		 = "\'"
+QUOTE						 = <<">>
 
 %productions%
 
-program = {SPACE} {declarationStatement}  statement+ ;
+program = {SPACE} statement+ ;
 
-declarationStatement = intStatement {SPACE} ;
-
-statement = 	instructionStatement {SPACE} 
+statement = 	declarationStatement {SPACE}
+			| 	instructionStatement {SPACE} 
 			| 	ifElseStatement {SPACE} 
 			| 	whileStatement {SPACE}
 			|	direStatement {SPACE}
-			| 	setVarStatement {SPACE};
+			| 	setVarStatement {SPACE} ;
 			
+declarationStatement = intStatement {SPACE}
+					| stringStatement {SPACE} ;
+					   
 instructionStatement = INSTRUCTION {SPACE} SEMICOLON ;
 			
 ifElseStatement = 	ifStatement {SPACE} [elseStatement] ;
@@ -73,11 +86,14 @@ whileStatement = WHILE {SPACE} conditonStatement {SPACE} LEFT_BRACE program RIGH
 
 direStatement = DIRE {SPACE} direValue SEMICOLON {SPACE};
 
-intStatement = INT SPACE+ WORD {SPACE} EGAL {SPACE} expression {SPACE} SEMICOLON {SPACE};
+intStatement = INT SPACE+ WORD {SPACE} EGAL {SPACE} IntVarValue {SPACE} SEMICOLON {SPACE};
+
+stringStatement = STRING SPACE+ WORD {SPACE} EGAL {SPACE} StringVarValue {SPACE} SEMICOLON {SPACE};
 
 setVarStatement = WORD  {SPACE} EGAL {SPACE} setVarValue SEMICOLON {SPACE};
 
-conditonStatement = LEFT_PAREN {SPACE} conditionExpr RIGHT_PAREN ;
+conditonStatement = LEFT_PAREN {SPACE} conditionExpr {SPACE} {conditionRest} RIGHT_PAREN ;
+conditionRest = logicalOperator SPACE+ conditionExpr ;
 conditionExpr = [NOT {SPACE}]  conditionParameter;
 conditionParameter =  CONDITION {SPACE} 
 					| TRUE {SPACE} 
@@ -88,22 +104,33 @@ booleanExpression = expression {SPACE} booleanExpressionRest;
 					
 booleanExpressionRest = EGAL {SPACE} expression
 					| BIGGER {SPACE} expression
-					| SMALLER {SPACE}expression;
+					| SMALLER {SPACE} expression;
 					
-setVarValue = 	expression {SPACE}
-				|	stringValue {SPACE} ;
+IntVarValue = expression
+			| INPUT ;
+		
+StringVarValue = stringExpression
+			| INPUT ;
+			
+setVarValue = INPUT
+			| expression {SPACE}
+			| stringValue {SPACE};
+			
+direValue = stringExpression {SPACE}
+			| INPUT;
 					
-direValue = stringValue {SPACE}
-			| atom {SPACE};
-					
-stringValue = APOSTROPHE {SPACE} sentence APOSTROPHE {SPACE} ;
-					
-sentence = (atom {SPACE})+;				
+stringValue = APOSTROPHE stringCharacter+ APOSTROPHE {SPACE}
+			| QUOTE stringCharacter+ QUOTE {SPACE} ;			
 					
 expression = term {SPACE} [expressionRest];
 
+stringExpression = stringValue {SPACE} [stringExpressionRest]
+				| WORD {SPACE} [stringExpressionRest];
+
 expressionRest = "+" {SPACE} expression
                | "-" {SPACE} expression ;
+			   
+stringExpressionRest = "+" {SPACE} stringExpression;
 
 term = factor {SPACE} [termRest] ;
 
@@ -116,3 +143,29 @@ factor = atom
 atom = [SUB] NUMBER
      | WORD ;
 
+stringCharacter = WORD
+				| NUMBER
+				| SPACE
+				| specialChar ;
+				
+specialChar = DOT
+			| EXCLAMATION
+			| QUESTION_MARK
+			| COLON
+			| COMMA
+			| SUB
+			| ADD
+			| MUL
+			| DIV
+			| LEFT_PAREN
+			| RIGHT_PAREN
+			| LEFT_BRACE
+			| RIGHT_BRACE
+			| BACKSLASH_APOSTROPHE
+			| SEMICOLON
+			| EGAL
+			| BIGGER
+			| SMALLER ;
+			
+logicalOperator = AND
+				| OR ;

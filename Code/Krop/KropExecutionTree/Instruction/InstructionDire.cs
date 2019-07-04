@@ -9,6 +9,7 @@ using PerCederberg.Grammatica.Runtime;
 using Krop.ControlWindow;
 using Krop.KropGrammaticaParser;
 using Krop.KropExecutionTree.AbstractClass;
+using System;
 
 namespace Krop.KropExecutionTree.Instruction
 {
@@ -21,7 +22,9 @@ namespace Krop.KropExecutionTree.Instruction
         bool IsStringValue = false;
         string VarName;
         string Value;
+        bool inputValue = false;
         string ErrorMsg;
+        Node stringExpression;
 
         public InstructionDire(Node _nodeDireStatement, Subprogram _parentSubprogram)
         {
@@ -35,15 +38,9 @@ namespace Krop.KropExecutionTree.Instruction
                     {
                         switch (_nodeDireStatement.GetChildAt(i).GetChildAt(y).GetId())
                         {
-                            case (int)KropConstants.STRING_VALUE:
+                            case (int)KropConstants.STRING_EXPRESSION:
                                 IsStringValue = true;
-                                for (int x = 0; x < _nodeDireStatement.GetChildAt(i).GetChildAt(y).GetChildCount(); x++)
-                                {
-                                    if (_nodeDireStatement.GetChildAt(i).GetChildAt(y).GetChildAt(x).GetId() == (int)KropConstants.SENTENCE)
-                                    {
-                                        CreateSentence(_nodeDireStatement.GetChildAt(i).GetChildAt(y).GetChildAt(x));
-                                    }
-                                }
+                                stringExpression = _nodeDireStatement.GetChildAt(i).GetChildAt(y);
                                 break;
                             case (int)KropConstants.ATOM:
                                 Token token;
@@ -58,6 +55,10 @@ namespace Krop.KropExecutionTree.Instruction
                                     VarName = token.GetImage();
                                 }
                                 break;
+                            case (int)KropConstants.INPUT:
+                                inputValue = true;
+                                IsStringValue = true;
+                                break;
                         }
                     }
                 }
@@ -68,6 +69,11 @@ namespace Krop.KropExecutionTree.Instruction
         {
             if (CanExecute())
             {
+                if (inputValue)
+                    Value = Subprogram.PromptInputValue<string>();
+                else
+                    Value = AlgorithmicExpression.CalculStringExpression(stringExpression, ParentSubprogram);
+
                 if (Value != null && IsStringValue == true)
                 {
                     FormControlWindow.TerminalWriteLine("Fourmi dit : " + Value);
@@ -108,7 +114,17 @@ namespace Krop.KropExecutionTree.Instruction
                 {
                     case (int)KropConstants.ATOM:
                         token = (Token)_nodeSentence.GetChildAt(i).GetChildAt(0);
-                        Value += token.GetImage();
+
+                        //Check if this is a backslashed character, like \' for printing '
+                        if (Enum.GetName(typeof(KropConstants), token.GetId()).Contains("BACKSLASH_"))
+                        {
+                            Value += token.GetImage().Replace("\\", "");
+                        }
+                        else
+                        {
+                            Value += token.GetImage();
+                        }
+
                         break;
                     case (int)KropConstants.SPACE:
                         token = (Token)_nodeSentence.GetChildAt(i);

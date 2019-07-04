@@ -46,6 +46,73 @@ namespace Krop.KropExecutionTree
         }
 
         /// <summary>
+        /// Calculate a string expression
+        /// </summary>
+        /// <param name="_nodeExpression">Node containing the string expression</param>
+        /// <param name="_parentSubprogram">Parent Subprogram</param>
+        /// <returns>Result of the expression</returns>
+        public static string CalculStringExpression(Node _nodeExpression, Subprogram _parentSubprogram)
+        {
+            string value = "";
+
+            for (int i = 0; i < _nodeExpression.GetChildCount(); i++)
+            {
+                switch (_nodeExpression.GetChildAt(i).GetId())
+                {
+                    case (int)KropConstants.STRING_VALUE:
+                        Console.WriteLine(_nodeExpression.GetParent().GetChildAt(0));
+                        value += GetStringValue(_nodeExpression.GetChildAt(i), _parentSubprogram);
+                        break;
+                    case (int)KropConstants.WORD:
+                        Token token = (Token)_nodeExpression.GetChildAt(i);
+                        value += _parentSubprogram.GetVar(token.GetImage(), _parentSubprogram).ToString();
+                        break;
+                    case (int)KropConstants.STRING_EXPRESSION_REST:
+                        value += CalculStringExpressionRest(_nodeExpression.GetChildAt(i), _parentSubprogram);
+                        break;
+                }
+            }
+
+            return value;
+        }
+
+        public static string GetStringValue(Node _nodeStringValue, Subprogram _parentSubprogram)
+        {
+            string value = "";
+
+            for (int i = 0; i < _nodeStringValue.GetChildCount(); i++)
+            {
+                switch (_nodeStringValue.GetChildAt(i).GetId())
+                {
+                    case (int)KropConstants.STRING_CHARACTER:
+                        Node _nodeSentence = _nodeStringValue.GetChildAt(i);
+                        Token token;
+
+                        for (int j = 0; j < _nodeSentence.GetChildCount(); j++)
+                        {
+                            switch (_nodeSentence.GetChildAt(j).GetId())
+                            {
+                                case (int)KropConstants.BACKSLASH_APOSTROPHE:
+                                    value += '\'';
+                                    break;
+                                case (int)KropConstants.SPECIAL_CHAR:
+                                    token = (Token)_nodeSentence.GetChildAt(j).GetChildAt(0);
+                                    value += token.GetImage();
+                                    break;
+                                default:
+                                    token = (Token)_nodeSentence.GetChildAt(j);
+                                    value += token.GetImage();
+                                    break;
+                            }
+                        }
+                        break;
+                }
+            }
+
+            return value;
+        }
+
+        /// <summary>
         /// Calculate the term of an algorithmic expression
         /// </summary>
         /// <param name="_nodeTerm">Node containing the term</param>
@@ -162,8 +229,6 @@ namespace Krop.KropExecutionTree
                 default:
                     return null;
             }
-
-
         }
 
         /// <summary>
@@ -182,6 +247,29 @@ namespace Krop.KropExecutionTree
                 {
                     case (int)KropConstants.EXPRESSION:
                         value = CalculExpression(_nodeExpressionRest.GetChildAt(i), _parentSubprogram);
+                        break;
+                }
+            }
+
+            return value;
+        }
+
+        /// <summary>
+        /// Calculate the stringExpressionRest of an stringExpression
+        /// </summary>
+        /// <param name="_nodeExpressionRest">Node containing the stringExpressionRest</param>
+        /// <param name="_parentSubprogram">Parent Subprogram</param>
+        /// <returns>Result of the calculation</returns>
+        private static string CalculStringExpressionRest(Node _nodeExpressionRest, Subprogram _parentSubprogram)
+        {
+            string value = "";
+
+            for (int i = 0; i < _nodeExpressionRest.GetChildCount(); i++)
+            {
+                switch (_nodeExpressionRest.GetChildAt(i).GetId())
+                {
+                    case (int)KropConstants.STRING_EXPRESSION:
+                        value = CalculStringExpression(_nodeExpressionRest.GetChildAt(i), _parentSubprogram);
                         break;
                 }
             }

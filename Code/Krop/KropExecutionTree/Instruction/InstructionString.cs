@@ -1,8 +1,8 @@
 ﻿// ----------------------------------------------------------------------------
 //
-// Definition of the InstructionInt class
-// Date: June 2018
-// Author: S. Gueissaz
+// Definition of the InstructionString class
+// Date: 03.11.2018
+// Author: Dorian Niclass
 //
 // ----------------------------------------------------------------------------
 using PerCederberg.Grammatica.Runtime;
@@ -16,16 +16,16 @@ namespace Krop.KropExecutionTree.Instruction
     /// <summary>
     /// Declaration of an Int variable instruction
     /// </summary>
-    class InstructionInt : Executable
+    class InstructionString : Executable
     {
         Subprogram ParentSubprogram;
-        int? VarValue;
+        string VarValue;
         string VarName;
         bool Error = false;
         bool inputValue = false;
         string ErrorMsg;
 
-        public InstructionInt(Node _nodeIntStatement, Subprogram _parentSubprogram)
+        public InstructionString(Node _nodeIntStatement, Subprogram _parentSubprogram)
         {
             this.ParentSubprogram = _parentSubprogram;
 
@@ -37,12 +37,13 @@ namespace Krop.KropExecutionTree.Instruction
                         Token token = (Token)_nodeIntStatement.GetChildAt(i);
                         VarName = token.GetImage();
                         break;
-                    case (int)KropConstants.INT_VAR_VALUE:
+
+                    case (int)KropConstants.STRING_VAR_VALUE:
 
                         switch (_nodeIntStatement.GetChildAt(i).GetChildAt(0).GetId())
                         {
-                            case (int)KropConstants.EXPRESSION:
-                                VarValue = AlgorithmicExpression.CalculExpression(_nodeIntStatement.GetChildAt(i).GetChildAt(0), _parentSubprogram);
+                            case (int)KropConstants.STRING_EXPRESSION:
+                                VarValue = AlgorithmicExpression.CalculStringExpression(_nodeIntStatement.GetChildAt(i).GetChildAt(0), _parentSubprogram);
                                 break;
                             case (int)KropConstants.INPUT:
                                 inputValue = true;
@@ -51,6 +52,8 @@ namespace Krop.KropExecutionTree.Instruction
                         break;
                 }
             }
+
+            
         }
 
         public override bool Execute()
@@ -58,10 +61,10 @@ namespace Krop.KropExecutionTree.Instruction
             if (!Subprogram.VarExists(VarName, ParentSubprogram))
             {
                 if (inputValue)
-                    VarValue = Subprogram.PromptInputValue<int>();
+                    VarValue = Subprogram.PromptInputValue<string>();
 
                 if (VarValue != null)
-                    ParentSubprogram.ListVar.Add(new IntVar(VarName, VarValue));
+                    ParentSubprogram.ListVar.Add(new StringVar(VarName, VarValue));
                 else
                 {
                     Error = true;
@@ -76,6 +79,7 @@ namespace Krop.KropExecutionTree.Instruction
 
             if (!Error)
             {
+               
                 return true;
             }
             else
